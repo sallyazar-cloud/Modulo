@@ -44,19 +44,13 @@ h1, h2, p { margin-top: 0; }
 h1 { margin-bottom: 10px; font-size: clamp(2.15rem, 7vw, 3.6rem); letter-spacing: -.05em; line-height: 1.08; }
 h1 span { color: var(--purple); }
 .hero > p:last-child { max-width: 640px; margin-bottom: 0; color: var(--muted); font-size: 1.08rem; }
-.grade-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.grade-controls label { font-weight: 800; }
-.control { min-height: 44px; padding: 8px 12px; border: 2px solid #dcd7e9; border-radius: 11px; background: #fff; color: var(--ink); }
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
 .level-picker { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
-.level-button, .subject-tabs button, .primary-button, .secondary-button { min-height: 44px; border: 0; border-radius: 12px; cursor: pointer; font-weight: 800; }
+.level-button, .primary-button, .secondary-button { min-height: 44px; border: 0; border-radius: 12px; cursor: pointer; font-weight: 800; }
 .level-button { padding: 9px 13px; background: transparent; }
 .level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
 .timer-label { margin: 0; color: var(--purple-dark); font-variant-numeric: tabular-nums; font-weight: 800; }
 .timer-label.is-low { color: #a33d35; }
-.subject-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.subject-tabs button { padding: 9px 15px; border: 1px solid var(--line); background: #fff; }
-.subject-tabs button[aria-pressed="true"] { border-color: var(--teal); background: var(--mint); color: #075f5a; }
 .activity { overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 40px rgb(55 40 100 / 9%); }
 .activity-head { padding: 22px 24px 12px; }
 .activity-head h2 { margin-bottom: 5px; font-size: 1.45rem; }
@@ -82,7 +76,6 @@ footer { padding: 18px 0 28px; color: var(--muted); font-size: .9rem; text-align
 @keyframes answer-feedback { from { transform: translateY(3px); opacity: .55; } to { transform: translateY(0); opacity: 1; } }
 @media (max-width: 620px) {
   .shell { width: min(100% - 22px, 920px); }
-  .grade-controls { align-items: stretch; flex-direction: column; }
   .activity-head { padding: 19px 17px 12px; }
   .activity-content { padding: 0 14px 16px; }
   .action-row { padding: 14px; }

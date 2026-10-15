@@ -6,36 +6,28 @@
   <meta name="theme-color" content="#f7f4ff">
   <title>Grade Activities | Modulo</title>
   <link rel="stylesheet" href="assets/andika.css">
+  <link rel="stylesheet" href="assets/learning-menu.css">
   <link rel="stylesheet" href="assets/grade-activities.css">
   <link rel="stylesheet" href="assets/halloween-theme.css">
 </head>
 <body>
   <a class="seasonal-banner" href="index.html" aria-label="Modulo home">
     <img src="assets/halloween-season.jfif" alt="Halloween-themed Modulo logo with a smiling pumpkin">
-    <span class="seasonal-tagline">Learning is exciting</span>
   </a>
   <header class="topbar shell">
+    <details class="learning-menu" data-learning-menu aria-label="Choose a class or subject"></details>
     <a class="brand" href="index.html" aria-label="Modulo home">
       <img class="brand-photo" src="assets/miss-salma-photo.jfif" alt="">
       <span>Modulo</span>
     </a>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="index.html#grade-browser-title">Browse grades</a>
-    </nav>
   </header>
 
   <main class="shell">
     <section class="hero" aria-labelledby="page-title">
       <p class="eyebrow">Vocabulary · Reading · Grammar · Writing</p>
       <h1 id="page-title">English practice for <span id="grade-title">your grade</span></h1>
-      <p>Choose a subject and challenge level. Your activity has a timer and friendly feedback.</p>
+      <p>Choose a subject from the top-left menu, then pick a challenge level.</p>
     </section>
-
-    <div class="grade-controls">
-      <label for="grade-select">Choose a grade</label>
-      <select id="grade-select" class="control"></select>
-    </div>
 
     <div class="toolbar">
       <div class="level-picker" role="group" aria-label="Challenge level">
@@ -45,13 +37,6 @@
       </div>
       <p class="timer-label" id="timer" aria-live="off">Time: 60 seconds</p>
     </div>
-
-    <nav class="subject-tabs" aria-label="Practice subject">
-      <button type="button" data-subject="vocabulary" aria-pressed="true">Vocabulary</button>
-      <button type="button" data-subject="reading" aria-pressed="false">Reading</button>
-      <button type="button" data-subject="grammar" aria-pressed="false">Grammar</button>
-      <button type="button" data-subject="writing" aria-pressed="false">Writing</button>
-    </nav>
 
     <section class="activity" aria-labelledby="activity-title">
       <div class="activity-head">
@@ -70,6 +55,7 @@
 
   <footer class="shell">Short steps, kind practice, and learning at your own pace.</footer>
   <script src="assets/activity-timer.js"></script>
+  <script src="assets/learning-menu.js"></script>
   <script src="assets/grade-activities.js"></script>
 </body>
 </html>

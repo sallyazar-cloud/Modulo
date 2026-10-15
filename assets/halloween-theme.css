@@ -41,23 +41,6 @@ body {
   object-fit: contain;
 }
 
-.seasonal-tagline {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  padding: 1px 12px;
-  transform: translateX(-50%);
-  border: 1px solid rgb(239 133 45 / 45%);
-  border-radius: 999px;
-  background: rgb(35 20 49 / 97%);
-  box-shadow: 0 2px 8px rgb(16 9 24 / 45%);
-  color: #ffad4c;
-  font-size: clamp(.82rem, 1.6vw, 1.1rem);
-  font-weight: 800;
-  line-height: 1.3;
-  white-space: nowrap;
-}
-
 .brand { color: var(--purple-dark) !important; }
 .brand-photo { border-color: #ffedd9 !important; }
 .site-nav a:hover,
@@ -77,8 +60,6 @@ body {
   color: var(--purple-dark) !important;
 }
 .category-icon { background: #f8e8fa !important; }
-.grade-panel { background: linear-gradient(150deg, #f7e8f7, #fff7ec 82%) !important; }
-.grade-link:hover { border-color: #dfa05f !important; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; }

@@ -322,7 +322,6 @@
 
   const gradeOptions = Object.keys(grades);
   const params = new URLSearchParams(window.location.search);
-  const gradeSelect = document.querySelector("#grade-select");
   const gradeTitle = document.querySelector("#grade-title");
   const activityTitle = document.querySelector("#activity-title");
   const activityLevel = document.querySelector("#activity-level");
@@ -333,18 +332,12 @@
   const checkButton = document.querySelector("#check-answer");
   const retryButton = document.querySelector("#retry-activity");
   const levelButtons = [...document.querySelectorAll("[data-level]")];
-  const subjectButtons = [...document.querySelectorAll("[data-subject]")];
   let currentGrade = gradeOptions.includes(params.get("grade")) ? params.get("grade") : null;
   let currentLevel = "easy";
-  let currentSubject = "vocabulary";
+  let currentSubject = ["vocabulary", "reading", "grammar", "writing"].includes(window.location.hash.slice(1))
+    ? window.location.hash.slice(1)
+    : "vocabulary";
   let complete = false;
-
-  gradeOptions.forEach(value => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = grades[value].label;
-    gradeSelect.append(option);
-  });
 
   const savedGrade = localStorage.getItem("miss-salma-selected-grade");
   if (!currentGrade && gradeOptions.includes(savedGrade)) currentGrade = savedGrade;
@@ -352,7 +345,6 @@
   localStorage.setItem("miss-salma-selected-grade", currentGrade);
 
   function updateGrade() {
-    gradeSelect.value = currentGrade;
     gradeTitle.textContent = grades[currentGrade].label;
     document.title = `${grades[currentGrade].label} Activities | Modulo`;
   }
@@ -439,12 +431,9 @@
     content.append(prompt, select);
   }
 
-  function selectGrade(grade) {
-    currentGrade = grade;
-    localStorage.setItem("miss-salma-selected-grade", grade);
-    params.set("grade", grade);
-    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
-    updateGrade();
+  function activateSubject(subject) {
+    if (!["vocabulary", "reading", "grammar", "writing"].includes(subject)) return;
+    currentSubject = subject;
     renderActivity();
   }
 
@@ -456,15 +445,7 @@
     });
   });
 
-  subjectButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      currentSubject = button.dataset.subject;
-      subjectButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
-      renderActivity();
-    });
-  });
-
-  gradeSelect.addEventListener("change", () => selectGrade(gradeSelect.value));
+  window.addEventListener("hashchange", () => activateSubject(window.location.hash.slice(1)));
 
   checkButton.addEventListener("click", () => {
     if (complete || timer.expired) return;

@@ -6,7 +6,7 @@ Colorful, browser-based English worksheets organized into four learning sections
 
 Open `index.html` in a modern web browser to visit the hub. No installation, account, or internet connection is needed.
 
-The welcome page includes a school-level selector for KG 1–KG 3 and Grades 1–9. Learners can browse each grade's vocabulary, reading, grammar, and writing activities; their last selected grade is saved in the browser on the current device.
+The top-left **Classes & subjects** menu is the main navigation: expand KG 1–KG 3 or Grades 1–9 to find that class's Vocabulary, Reading, Grammar, and Writing activities. The last selected grade is saved in the browser on the current device.
 
 The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/halloween-season.jfif`, so the theme can be updated or removed later without changing worksheet content.
 
