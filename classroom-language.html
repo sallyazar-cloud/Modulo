@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ff">
+  <title id="document-title">Classroom Language | Miss Salma's Hub</title>
+  <link rel="stylesheet" href="assets/andika.css">
+  <link rel="stylesheet" href="assets/basics-worksheet.css">
+  <link rel="stylesheet" href="assets/matching.css">
+</head>
+<body data-worksheet="classroom-language">
+  <header class="topbar shell">
+    <a class="brand" href="index.html" aria-label="Miss Salma's Hub home">
+      <img class="brand-photo" src="assets/miss-salma-photo.jfif" alt="">
+      <span>Miss Salma's Hub</span>
+    </a>
+    <nav class="site-nav" aria-label="Worksheet sections">
+      <a href="index.html#basics-vocabulary" aria-current="page">Basics &amp; Vocabulary</a>
+      <a href="index.html#grammar">Grammar Lab</a>
+      <a href="index.html#reading-comprehension">Reading</a>
+      <a href="index.html#writing">Writing</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow" id="page-eyebrow">A1 English · Classroom language</p>
+      <h1 id="page-title">Classroom Language: Commands &amp; Actions</h1>
+      <p id="page-intro">Learn common classroom instructions and practise the actions they ask you to do.</p>
+    </section>
+
+    <section class="toolbar" aria-label="Worksheet options">
+      <div class="level-picker" role="group" aria-label="Choose a difficulty level">
+        <button class="level-button" type="button" data-level="starter" aria-pressed="true">🌱 Starter</button>
+        <button class="level-button" type="button" data-level="builder" aria-pressed="false">🌿 Builder</button>
+        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">🚀 Challenge</button>
+      </div>
+      <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
+    </section>
+
+    <section class="reference-card" aria-labelledby="reference-title">
+      <h2 id="reference-title">Listen, look, and do</h2>
+      <p id="reference-description">These are some useful instructions you may hear in class.</p>
+      <div class="reference-grid" id="reference-grid"></div>
+    </section>
+
+    <section class="matching-activity" id="matching-zone" aria-labelledby="matching-title">
+      <h2 id="matching-title">Command match: drag, drop, or tap</h2>
+      <p class="matching-intro">Drag an instruction to its clue, or select a phrase and then tap a clue.</p>
+      <p class="matching-label" id="word-bank-label">Classroom instructions</p>
+      <div class="matching-words" id="matching-words" aria-labelledby="word-bank-label"></div>
+      <p class="matching-label" id="matching-clue-label">What should you do?</p>
+      <div class="matching-targets" id="matching-targets" aria-labelledby="matching-clue-label"></div>
+      <p class="matching-status" id="matching-status" aria-live="polite"></p>
+      <div class="matching-footer">
+        <p class="matching-score" id="matching-score" aria-live="polite"></p>
+        <button class="matching-reset" id="reset-matching" type="button">Reset matches</button>
+      </div>
+    </section>
+
+    <section class="activity" aria-labelledby="activity-title">
+      <div class="activity-head">
+        <div class="activity-title-row">
+          <div>
+            <h2 id="activity-title">Warm-up: try the basics</h2>
+            <p id="level-description">A small set of five questions to get started.</p>
+          </div>
+          <span class="eyebrow" id="level-label">🌱 Starter</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span id="progress-label">0 of 5 answered</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+      <form id="worksheet-form" novalidate>
+        <div class="questions" id="questions"></div>
+        <div class="action-row">
+          <button class="primary-button" type="submit">Check my answers</button>
+          <button class="secondary-button" id="reset-button" type="button">Start again</button>
+          <p class="result" id="result" aria-live="polite">You've got this!</p>
+          <div class="focus-nav" aria-label="Question navigation">
+            <button class="nav-button" id="previous-button" type="button" aria-label="Previous question">←</button>
+            <button class="nav-button" id="next-button" type="button" aria-label="Next question">→</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="shell">Short steps, kind feedback, and no timer. You can try again any time.</footer>
+  <script src="assets/basics-worksheet.js"></script>
+  <script src="assets/matching.js"></script>
+</body>
+</html>

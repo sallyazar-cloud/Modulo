@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ff">
+  <title>Miss Salma's Hub | English Worksheets</title>
+  <link rel="stylesheet" href="assets/andika.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #29264a;
+      --muted: #625f78;
+      --purple: #6549c7;
+      --purple-dark: #4c35a2;
+      --lilac: #eee9ff;
+      --teal: #087f78;
+      --mint: #e1f7ef;
+      --yellow: #ffe88a;
+      --paper: #fff;
+      --line: #e5e1f0;
+      --shadow: 0 14px 40px rgb(55 40 100 / 9%);
+      font-family: "Andika", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background:
+        radial-gradient(ellipse at 8% 8%, #fff2bd 0, transparent 24rem),
+        radial-gradient(ellipse at 95% 30%, #dff8f0 0, transparent 27rem),
+        #f7f4ff;
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    :focus-visible { outline: 3px solid #ef9a37; outline-offset: 3px; }
+    .shell { width: min(1000px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 22px 0 8px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--purple-dark);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-decoration: none;
+    }
+    .brand-photo {
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      border: 2px solid var(--paper);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      box-shadow: 0 2px 8px rgb(55 40 100 / 16%);
+    }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+    .site-nav a {
+      padding: 8px 12px;
+      border-radius: 11px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { background: var(--lilac); color: var(--purple-dark); }
+    main { padding: 18px 0 54px; }
+    .hero { padding: 31px 0 28px; }
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 700px;
+      margin-bottom: 12px;
+      font-size: clamp(2.35rem, 7vw, 4rem);
+      letter-spacing: -.055em;
+      line-height: 1.05;
+    }
+    h1 span { color: var(--purple); }
+    .hero p { max-width: 640px; margin-bottom: 0; color: var(--muted); font-size: 1.12rem; }
+    .section-grid { display: grid; gap: 18px; }
+    .category {
+      scroll-margin-top: 16px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: rgb(255 255 255 / 92%);
+      box-shadow: var(--shadow);
+    }
+    .category-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin-bottom: 16px;
+    }
+    .category-icon {
+      display: grid;
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--lilac);
+      font-size: 1.4rem;
+    }
+    #grammar .category-icon { background: var(--mint); }
+    #reading-comprehension .category-icon { background: #fff2ce; }
+    #writing .category-icon { background: #e9f1ff; }
+    .category-heading h2 { margin: 1px 0 2px; font-size: 1.35rem; }
+    .category-heading p { margin: 0; color: var(--muted); }
+    .worksheet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
+    .worksheet-card {
+      display: flex;
+      min-height: 130px;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fdfcff;
+      text-decoration: none;
+    }
+    a.worksheet-card:hover { box-shadow: 0 8px 18px rgb(55 40 100 / 9%); }
+    .worksheet-card h3 { margin: 0 0 6px; color: var(--purple-dark); font-size: 1.1rem; }
+    .worksheet-card p { margin: 0; color: var(--muted); }
+    .card-action { margin-top: auto; padding-top: 13px; color: var(--teal); font-size: .9rem; font-weight: 800; }
+    .grammar-card {
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+      background: linear-gradient(125deg, #f0ebff, #fff 76%);
+    }
+    .grammar-card-copy { display: flex; min-width: 0; min-height: 100px; flex: 1; flex-direction: column; align-items: flex-start; }
+    .grammar-card-label {
+      margin-bottom: 7px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--mint);
+      color: #075f5a;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+    .grammar-card-copy .card-action { margin-top: auto; }
+    .coming-soon {
+      background: linear-gradient(140deg, #fff, #f7f5ff);
+    }
+    .coming-soon .card-action { color: var(--muted); }
+    footer { padding: 18px 0 28px; color: var(--muted); font-size: .9rem; text-align: center; }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 22px, 1000px); }
+      .hero { padding: 22px 0; }
+      .category { padding: 17px; }
+      .category-heading { gap: 10px; }
+      .category-heading h2 { font-size: 1.17rem; }
+      .brand-photo { width: 40px; height: 40px; flex-basis: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar shell">
+    <a class="brand" href="index.html" aria-label="Miss Salma's Hub home">
+      <img class="brand-photo" src="assets/miss-salma-photo.jfif" alt="">
+      <span>Miss Salma's Hub</span>
+    </a>
+    <nav class="site-nav" aria-label="Worksheet sections">
+      <a href="#basics-vocabulary">Basics &amp; Vocabulary</a>
+      <a href="#grammar">Grammar Lab</a>
+      <a href="#reading-comprehension">Reading</a>
+      <a href="#writing">Writing</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">English practice · At your own pace</p>
+      <h1 id="page-title">Welcome to <span>Miss Salma's Hub</span></h1>
+      <p>Choose a section and explore. Start with the basics, practise grammar, or come back soon for reading and writing activities.</p>
+    </section>
+
+    <div class="section-grid">
+      <section class="category" id="basics-vocabulary" aria-labelledby="basics-title">
+        <div class="category-heading">
+          <span class="category-icon" aria-hidden="true">🔤</span>
+          <div>
+            <h2 id="basics-title">Basics &amp; Vocabulary</h2>
+            <p>Build familiarity with letters, words, and everyday language.</p>
+          </div>
+        </div>
+        <div class="worksheet-grid">
+          <a class="worksheet-card" href="alphabet.html">
+            <h3>The Alphabet</h3>
+            <p>Practise uppercase and lowercase letters, sequences, and alphabetical order.</p>
+            <span class="card-action">Open worksheet →</span>
+          </a>
+          <a class="worksheet-card" href="colors.html">
+            <h3>Colors</h3>
+            <p>Recognize, name, and spell common colors.</p>
+            <span class="card-action">Open worksheet →</span>
+          </a>
+          <a class="worksheet-card" href="school-supplies.html">
+            <h3>School Supplies</h3>
+            <p>Learn the names of useful things in a school bag and classroom.</p>
+            <span class="card-action">Open worksheet →</span>
+          </a>
+          <a class="worksheet-card" href="classroom-language.html">
+            <h3>Classroom Language: Commands &amp; Actions</h3>
+            <p>Understand common teacher instructions and classroom actions.</p>
+            <span class="card-action">Open worksheet →</span>
+          </a>
+          <p class="level-note">All vocabulary worksheets include Starter, Builder, and Challenge levels.</p>
+        </div>
+      </section>
+
+      <section class="category" id="grammar" aria-labelledby="grammar-title">
+        <div class="category-heading">
+          <span class="category-icon" aria-hidden="true">🧪</span>
+          <div>
+            <h2 id="grammar-title">Grammar Lab</h2>
+              <p>Come experiment with curious little grammar mysteries.</p>
+          </div>
+        </div>
+        <div class="worksheet-grid">
+          <a class="worksheet-card grammar-card" href="grammar/verb-to-have.html">
+            <span class="grammar-card-copy">
+              <span class="grammar-card-label">🧪 A curious Grammar Lab mystery</span>
+              <h3>Verb To Have: The Great Have-or-Has Mystery</h3>
+              <p>Professor Salma's hamster has mixed up the grammar labels again. Can you crack the case before the experiment turns his snack into homework?</p>
+              <span class="card-action">Enter the Grammar Lab →</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="category" id="reading-comprehension" aria-labelledby="reading-title">
+        <div class="category-heading">
+          <span class="category-icon" aria-hidden="true">📚</span>
+          <div>
+            <h2 id="reading-title">Reading Comprehension</h2>
+            <p>Read carefully, find key details, and make sense of a text.</p>
+          </div>
+        </div>
+        <div class="worksheet-grid">
+          <a class="worksheet-card" href="reading/basket-of-fruits.html">
+            <h3>The Basket of Colorful Fruits</h3>
+            <p>Read a curious little story about a basket whose fruits have plans of their own.</p>
+            <span class="card-action">Read the story →</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="category" id="writing" aria-labelledby="writing-title">
+        <div class="category-heading">
+          <span class="category-icon" aria-hidden="true">✍️</span>
+          <div>
+            <h2 id="writing-title">Writing</h2>
+            <p>Practise building sentences and sharing your ideas in writing.</p>
+          </div>
+        </div>
+        <div class="worksheet-grid">
+          <div class="worksheet-card coming-soon">
+            <h3>Writing activities</h3>
+            <p>Writing prompts and guided practice will be added here.</p>
+            <span class="card-action">Activities coming soon</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="shell">Short steps, kind practice, and learning at your own pace.</footer>
+</body>
+</html>

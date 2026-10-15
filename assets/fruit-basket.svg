@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title description">
+  <title id="title">A basket of colorful fruit</title>
+  <desc id="description">A smiling red apple, yellow banana, purple grapes, and orange resting in a woven basket.</desc>
+  <rect width="640" height="360" rx="28" fill="#fff5d6"/>
+  <circle cx="98" cy="75" r="27" fill="#ffe88a"/>
+  <path d="M70 277h500" stroke="#eed9a7" stroke-linecap="round" stroke-width="8"/>
+  <path d="M175 218c8-66 54-110 145-110s137 44 145 110" fill="none" stroke="#a96b38" stroke-linecap="round" stroke-width="17"/>
+  <path d="m153 202 37 121h254l37-121z" fill="#c98548" stroke="#8b5a3c" stroke-width="7"/>
+  <path d="m175 236 309 0m-294 32h280m-270 32h260" stroke="#e9b06b" stroke-linecap="round" stroke-width="9"/>
+  <path d="M251 197c-22-28-18-65 4-88 17-18 37-13 53-3 17-10 37-15 54 3 22 23 26 60 4 88-16 20-36 32-57 32s-42-12-58-32" fill="#df4a51" stroke="#b73543" stroke-width="5"/>
+  <path d="M304 109c-1-21 8-34 23-42" fill="none" stroke="#754a2a" stroke-linecap="round" stroke-width="9"/>
+  <path d="M318 78c18-21 39-17 50-4-12 18-32 21-50 4" fill="#43a76d"/>
+  <circle cx="295" cy="161" r="4" fill="#382a30"/>
+  <circle cx="330" cy="161" r="4" fill="#382a30"/>
+  <path d="M300 176q13 13 26 0" fill="none" stroke="#7a292c" stroke-linecap="round" stroke-width="4"/>
+  <path d="M357 200c-31-21-38-62-22-92 15-27 48-38 78-25 22 10 37 30 44 54-25-12-39-9-52 5-14 15-18 34-48 58" fill="#ffd34f" stroke="#e8a52b" stroke-width="5"/>
+  <path d="M393 95q9-20 25-23" fill="none" stroke="#754a2a" stroke-linecap="round" stroke-width="7"/>
+  <path d="M184 190c-7-22 3-41 19-47 12-4 23 1 29 11 12-4 24 1 29 12 7 17-2 37-22 44-20 7-47 1-55-20z" fill="#8657ba"/>
+  <circle cx="190" cy="183" r="22" fill="#9367c9"/>
+  <circle cx="211" cy="172" r="23" fill="#8050b0"/>
+  <circle cx="231" cy="185" r="22" fill="#9b68ca"/>
+  <circle cx="202" cy="199" r="22" fill="#7746a9"/>
+  <circle cx="224" cy="205" r="19" fill="#8b58bc"/>
+  <path d="M202 151q17-24 36-16" fill="none" stroke="#4b944c" stroke-linecap="round" stroke-width="7"/>
+  <circle cx="586" cy="108" r="18" fill="#fff" opacity=".8"/>
+  <path d="M568 108h36m-18-18v36" stroke="#f29a40" stroke-linecap="round" stroke-width="4"/>
+  <path d="m515 82 6 8-6 8-6-8zm-426 72 5 7-5 7-5-7z" fill="#6549c7"/>
+</svg>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ff">
+  <title>The Basket of Colorful Fruits | Miss Salma's Hub</title>
+  <link rel="stylesheet" href="../assets/andika.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #29264a;
+      --muted: #625f78;
+      --purple: #6549c7;
+      --purple-dark: #4c35a2;
+      --lilac: #eee9ff;
+      --teal: #087f78;
+      --mint: #e1f7ef;
+      --yellow: #ffe88a;
+      --line: #e5e1f0;
+      --paper: #fff;
+      font-family: "Andika", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 8% 8%, #fff2bd 0, transparent 24rem),
+        radial-gradient(ellipse at 95% 30%, #dff8f0 0, transparent 27rem),
+        #f7f4ff;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    button, select { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid #ef9a37; outline-offset: 3px; }
+    .shell { width: min(880px, calc(100% - 32px)); margin-inline: auto; }
+    .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 20px 0 8px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--purple-dark); font-weight: 700; text-decoration: none; }
+    .brand-photo { width: 46px; height: 46px; flex: 0 0 46px; border: 2px solid var(--paper); border-radius: 50%; object-fit: cover; object-position: center; box-shadow: 0 2px 8px rgb(55 40 100 / 16%); }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+    .site-nav a { padding: 8px 12px; border-radius: 11px; color: var(--muted); font-weight: 700; text-decoration: none; }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { background: var(--lilac); color: var(--purple-dark); }
+    main { padding: 24px 0 54px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: clamp(2rem, 7vw, 3.3rem); line-height: 1.12; }
+    h1 span { color: var(--purple); }
+    .eyebrow { margin-bottom: 8px; color: var(--teal); font-size: .83rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .intro { max-width: 650px; margin-bottom: 22px; color: var(--muted); }
+    .storybook, .quiz { overflow: hidden; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); box-shadow: 0 14px 40px rgb(55 40 100 / 9%); }
+    .story-art { display: block; width: 100%; max-height: 340px; object-fit: cover; }
+    .story-page { min-height: 155px; padding: 22px 24px 8px; }
+    .story-page h2 { margin-bottom: 8px; font-size: 1.3rem; }
+    .story-page p { margin-bottom: 8px; font-size: 1.08rem; }
+    .story-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 24px 22px; }
+    .story-button, .quiz-button { min-height: 46px; padding: 10px 17px; border: 0; border-radius: 12px; background: var(--purple); color: white; font-weight: 700; cursor: pointer; }
+    .story-button:hover, .quiz-button:hover { background: var(--purple-dark); }
+    .story-button:disabled { background: #eeedf2; color: #777487; cursor: not-allowed; }
+    .page-count { margin: 0 auto; color: var(--muted); font-weight: 700; }
+    .quiz { padding: 22px 24px; }
+    .quiz h2 { margin-bottom: 4px; font-size: 1.35rem; }
+    .quiz > p { color: var(--muted); }
+    .quiz-list { display: grid; gap: 13px; margin: 16px 0; }
+    .quiz-item { display: grid; gap: 6px; }
+    .quiz-item label { font-weight: 700; }
+    .quiz-item select { width: min(100%, 440px); min-height: 46px; padding: 9px 12px; border: 2px solid #dcd7e9; border-radius: 11px; background: white; }
+    .quiz-result { min-height: 1.6em; margin: 12px 0 0; color: var(--purple-dark); font-weight: 700; }
+    footer { padding: 18px 0 28px; color: var(--muted); font-size: .9rem; text-align: center; }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 22px, 880px); }
+      main { padding-top: 15px; }
+      .story-page, .quiz { padding-inline: 16px; }
+      .story-controls { padding-inline: 16px; }
+      .story-art { min-height: 190px; }
+      .page-count { width: 100%; order: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar shell">
+    <a class="brand" href="../index.html" aria-label="Miss Salma's Hub home">
+      <img class="brand-photo" src="../assets/miss-salma-photo.jfif" alt="">
+      <span>Miss Salma's Hub</span>
+    </a>
+    <nav class="site-nav" aria-label="Worksheet sections">
+      <a href="../index.html#basics-vocabulary">Basics &amp; Vocabulary</a>
+      <a href="../index.html#grammar">Grammar Lab</a>
+      <a href="../index.html#reading-comprehension" aria-current="page">Reading</a>
+      <a href="../index.html#writing">Writing</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <p class="eyebrow">Reading Comprehension · Storybook</p>
+    <h1>The Basket of <span>Colorful Fruits</span></h1>
+    <p class="intro">Meet a basket full of fruit with a curious plan. Read one short page at a time, then see what you remember.</p>
+
+    <article class="storybook" aria-labelledby="story-page-title">
+      <img class="story-art" src="../assets/fruit-basket.svg" alt="A smiling red apple, yellow banana, purple grapes, and orange sitting in a basket." width="640" height="360">
+      <div class="story-page" aria-live="polite">
+        <h2 id="story-page-title">Page 1: A very quiet basket</h2>
+        <p id="story-page-text">On Monday morning, Mina found a basket beside her door. A shiny red apple, a yellow banana, purple grapes, and a little orange sat inside. “Good morning,” said the apple. Mina blinked. Fruit did not usually say good morning.</p>
+      </div>
+      <div class="story-controls">
+        <button class="story-button" id="previous-page" type="button" disabled>← Previous</button>
+        <p class="page-count" id="page-count" aria-live="polite">Page 1 of 4</p>
+        <button class="story-button" id="next-page" type="button">Next page →</button>
+      </div>
+    </article>
+
+    <section class="quiz" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">Story detective: what do you remember?</h2>
+      <p>Pick an answer for each question. You can turn back to the story whenever you like.</p>
+      <form id="story-quiz">
+        <div class="quiz-list">
+          <div class="quiz-item">
+            <label for="fruit-answer-1">1. Where did Mina find the basket?</label>
+            <select id="fruit-answer-1" name="answer-1">
+              <option value="">Choose an answer</option><option value="door">Beside her door</option><option value="river">Beside a river</option><option value="school">At school</option>
+            </select>
+          </div>
+          <div class="quiz-item">
+            <label for="fruit-answer-2">2. Which fruit spoke first?</label>
+            <select id="fruit-answer-2" name="answer-2">
+              <option value="">Choose an answer</option><option value="apple">The apple</option><option value="banana">The banana</option><option value="grape">A grape</option>
+            </select>
+          </div>
+          <div class="quiz-item">
+            <label for="fruit-answer-3">3. What did the banana want to be?</label>
+            <select id="fruit-answer-3" name="answer-3">
+              <option value="">Choose an answer</option><option value="hat">A hat</option><option value="boat">A boat</option><option value="phone">A phone</option>
+            </select>
+          </div>
+          <div class="quiz-item">
+            <label for="fruit-answer-4">4. What did the grapes do when it rained?</label>
+            <select id="fruit-answer-4" name="answer-4">
+              <option value="">Choose an answer</option><option value="umbrella">They made a grape umbrella</option><option value="dance">They danced in the rain</option><option value="hide">They hid in a shoe</option>
+            </select>
+          </div>
+          <div class="quiz-item">
+            <label for="fruit-answer-5">5. What did Mina share with the fruit?</label>
+            <select id="fruit-answer-5" name="answer-5">
+              <option value="">Choose an answer</option><option value="picnic">A picnic</option><option value="puzzle">A puzzle</option><option value="song">A song</option>
+            </select>
+          </div>
+        </div>
+        <button class="quiz-button" type="submit">Check my answers</button>
+        <p class="quiz-result" id="quiz-result" aria-live="polite">Ready when you are!</p>
+      </form>
+    </section>
+  </main>
+  <footer class="shell">Read at your own pace. Every good detective takes their time.</footer>
+
+  <script>
+    const storyPages = [
+      { title: "Page 1: A very quiet basket", text: "On Monday morning, Mina found a basket beside her door. A shiny red apple, a yellow banana, purple grapes, and a little orange sat inside. “Good morning,” said the apple. Mina blinked. Fruit did not usually say good morning." },
+      { title: "Page 2: The banana's big idea", text: "“We are going on an adventure!” announced the banana. “I will be the boat.” It curled itself into a tiny yellow canoe. The orange climbed aboard, but the apple was too round and rolled straight into Mina's slipper. “A splendid captain's hat!” called the banana." },
+      { title: "Page 3: A grape umbrella", text: "Outside, a little rain began to fall. The grapes huddled together and opened their leaves like a small purple umbrella. Mina and the fruit squeezed underneath. One grape wore a raindrop like a shiny hat. “It is a very wet hat,” it giggled." },
+      { title: "Page 4: The best picnic", text: "The sun came out, so Mina spread a blanket. They shared a picnic and told jokes. The banana's favorite joke was, “Why did the orange stop? It ran out of juice!” Everyone laughed, even the apple in the slipper. The basket was quiet again on Tuesday—but Mina still says good morning, just in case." }
+    ];
+    let currentPage = 0;
+    const previousButton = document.querySelector("#previous-page");
+    const nextButton = document.querySelector("#next-page");
+    function showStoryPage() {
+      document.querySelector("#story-page-title").textContent = storyPages[currentPage].title;
+      document.querySelector("#story-page-text").textContent = storyPages[currentPage].text;
+      document.querySelector("#page-count").textContent = `Page ${currentPage + 1} of ${storyPages.length}`;
+      previousButton.disabled = currentPage === 0;
+      nextButton.disabled = currentPage === storyPages.length - 1;
+    }
+    previousButton.addEventListener("click", () => {
+      if (currentPage > 0) { currentPage -= 1; showStoryPage(); }
+    });
+    nextButton.addEventListener("click", () => {
+      if (currentPage < storyPages.length - 1) { currentPage += 1; showStoryPage(); }
+    });
+    document.querySelector("#story-quiz").addEventListener("submit", event => {
+      event.preventDefault();
+      const answers = ["door", "apple", "boat", "umbrella", "picnic"];
+      let score = 0;
+      answers.forEach((answer, index) => {
+        const control = document.querySelector(`#fruit-answer-${index + 1}`);
+        if (control.value === answer) score += 1;
+      });
+      document.querySelector("#quiz-result").textContent = score === answers.length
+        ? `Amazing — ${score} out of ${answers.length}!`
+        : `You got ${score} out of ${answers.length}. Revisit the story and try again!`;
+    });
+  </script>
+</body>
+</html>
