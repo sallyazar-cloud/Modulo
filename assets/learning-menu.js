@@ -54,7 +54,7 @@
   const summary = document.createElement("summary");
   summary.textContent = "Classes & subjects";
   menu.append(summary);
-  addGroup("Choose a class and subject");
+  addGroup("Choose a class");
   menu.append(panel);
 
   menu.addEventListener("click", event => {
