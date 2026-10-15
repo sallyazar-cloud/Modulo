@@ -8,7 +8,7 @@ Open `index.html` in a modern web browser to visit the hub. No installation, acc
 
 The top-left **Classes & subjects** menu is the main navigation: expand KG 1–KG 3 or Grades 1–9 to find that class's activities. Grades 1–5 include Vocabulary, Grammar, Listening, Speaking, Reading, and Writing; other grades retain Vocabulary, Grammar, Reading, and Writing.
 
-Grade 1 lessons follow the workbook's CP plan, Grade 2 follows CE1, and Grade 3 follows CE2. Grades 4–5 extend CE2 progressively. Grade 1–5 lesson pages include five period plans, learning objectives, success criteria, and suggested tasks; listening tasks can be played aloud.
+Grade 1 lessons follow the workbook's CP plan, Grade 2 follows CE1, and Grade 3 follows CE2. Grade 4 follows the CM1 programme and Grade 5 follows CM2 in the supplied French programme for foreign and regional languages. Each CM grade covers all 18 competency strands across five periods, with Grade 4 targeting A1 and Grade 5 progressing from A1 toward A1+/A2 where appropriate. Grade 1–5 lesson pages include period plans, learning objectives, success criteria, and suggested tasks; listening tasks can be played aloud.
 
 The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/halloween-season.jfif`, so the theme can be updated or removed later without changing worksheet content.
 

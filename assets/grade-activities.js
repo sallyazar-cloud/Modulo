@@ -467,6 +467,12 @@
       const focus = document.createElement("p");
       focus.textContent = `Lesson focus: ${period.focus}.`;
       brief.append(heading, focus);
+      if (gradeCurriculum.levelDescription) {
+        const benchmark = document.createElement("p");
+        benchmark.className = "curriculum-benchmark";
+        benchmark.textContent = gradeCurriculum.levelDescription;
+        brief.append(benchmark);
+      }
 
       if (lesson) {
         const details = document.createElement("dl");
@@ -487,6 +493,27 @@
         connection.className = "lesson-task";
         connection.textContent = `Apply the words and sentence patterns from this lesson: ${period.focus}.`;
         brief.append(connection);
+      }
+      if (period.competencies && period.competencies.length) {
+        const competencyList = document.createElement("details");
+        competencyList.className = "competency-list";
+        const summary = document.createElement("summary");
+        summary.textContent = `Curriculum competencies (${period.competencies.length})`;
+        const list = document.createElement("ul");
+        period.competencies.forEach(competency => {
+          const entry = document.createElement("li");
+          const area = document.createElement("span");
+          area.className = "competency-area";
+          area.textContent = competency.area;
+          const title = document.createElement("h4");
+          title.textContent = competency.title;
+          const outcome = document.createElement("p");
+          outcome.textContent = competency.outcome;
+          entry.append(area, title, outcome);
+          list.append(entry);
+        });
+        competencyList.append(summary, list);
+        brief.append(competencyList);
       }
       content.append(brief);
     }
@@ -596,7 +623,7 @@
   }
 
   function activateSubject(subject) {
-    if (!["vocabulary", "reading", "grammar", "writing"].includes(subject)) return;
+    if (!["vocabulary", "reading", "grammar", "writing", "listening", "speaking"].includes(subject)) return;
     currentSubject = subject;
     renderActivity();
   }
