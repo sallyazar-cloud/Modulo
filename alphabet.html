@@ -104,7 +104,7 @@
       gap: 8px;
       width: min(100%, 620px);
     }
-    .level-picker-title { margin: 0 0 8px; color: var(--purple-dark); font-weight: 800; }
+    .level-picker-title { flex: 1 1 100%; margin: 0 0 8px; color: var(--purple-dark); font-weight: 800; }
     .level-button, .focus-button, .secondary-button, .primary-button, .nav-button {
       min-height: 44px;
       border: 0;
@@ -369,9 +369,9 @@
     let checked = false;
     const levelSeconds = { starter: 60, builder: 45, challenge: 30 };
     const levelNames = {
-      starter: "Easy: The Curious Researcher",
-      builder: "Medium: The Keen Observer",
-      challenge: "Hard: The Language Guru"
+      starter: "Easy",
+      builder: "Medium",
+      challenge: "Hard"
     };
     const submitButton = form.querySelector('[type="submit"]');
     const activityTimer = window.createActivityTimer(

@@ -95,7 +95,7 @@ h1 span { color: #6549c7; }
   gap: 8px;
   width: min(100%, 620px);
 }
-.level-picker-title { margin: 0 0 8px; color: #4c35a2; font-weight: 800; }
+.level-picker-title { flex: 1 1 100%; margin: 0 0 8px; color: #4c35a2; font-weight: 800; }
 
 .level-button, .focus-button, .secondary-button, .primary-button, .nav-button {
   min-height: 44px;

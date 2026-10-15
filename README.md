@@ -16,9 +16,9 @@ The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with it
 
 ## Worksheets
 
-- **Basics & Vocabulary:** [The Alphabet](./alphabet.html), [Colors](./colors.html), [School Supplies](./school-supplies.html), and [Classroom Language: Commands & Actions](./classroom-language.html). All have Easy: The Curious Researcher, Medium: The Keen Observer, and Hard: The Language Guru levels, timed question sets and matching games, animated feedback, and drag-and-drop matching with a click-to-match alternative.
+- **Basics & Vocabulary:** [The Alphabet](./alphabet.html), [Colors](./colors.html), [School Supplies](./school-supplies.html), and [Classroom Language: Commands & Actions](./classroom-language.html). Each has clearly separated Easy, Medium, and Hard levels, timed question sets and matching games, animated feedback, and drag-and-drop matching with a click-to-match alternative.
 - **Grade 6 Grammar:** Period 2 covers have/has for people, family, and possessions, with a link to the full timed practice for positive forms, negatives, and questions.
-- **Reading Comprehension:** [The Basket of Colorful Fruits](./reading/basket-of-fruits.html) — an original illustrated story, a timed fruit picture matching game, and a comprehension quiz with the same three named timed levels and answer feedback.
+- **Reading Comprehension:** [The Basket of Colorful Fruits](./reading/basket-of-fruits.html) — an original illustrated story, a timed fruit picture matching game, and a comprehension quiz with clearly separated Easy, Medium, and Hard levels and answer feedback.
 - **Writing:** the grade activity pages include age-progressive writing prompts with space to draft a response.
 
 The interactive worksheets use short sets, clear instructions, instant feedback, progress tracking, and an optional one-question-at-a-time mode. Grade activities offer three named challenge levels, timed practice, and retry feedback. The site uses the locally hosted Andika typeface, with a clearer Arial capital `I` glyph, distributed under the SIL Open Font License in `assets/fonts/OFL.txt`.
