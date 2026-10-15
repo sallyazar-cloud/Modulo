@@ -47,6 +47,12 @@ h1 span { color: var(--purple); }
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
 .period-control { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 16px; }
 .period-control label { font-weight: 800; }
+.grade-six-resources { margin: 0 0 18px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgb(55 40 100 / 7%); }
+.grade-six-resources h2 { margin: 0 0 4px; font-size: 1.25rem; }
+.grade-six-resources > p { margin: 0 0 12px; color: var(--muted); }
+.grade-resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px; }
+.grade-resource-grid a { padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fdfcff; color: var(--purple-dark); font-weight: 800; text-decoration: none; }
+.grade-resource-grid a:hover { background: var(--lilac); }
 .control { min-height: 44px; padding: 8px 12px; border: 2px solid #dcd7e9; border-radius: 11px; background: #fff; color: var(--ink); }
 .level-picker { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
 .level-button, .primary-button, .secondary-button { min-height: 44px; border: 0; border-radius: 12px; cursor: pointer; font-weight: 800; }

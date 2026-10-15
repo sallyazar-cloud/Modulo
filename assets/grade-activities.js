@@ -327,6 +327,7 @@
   const subjectSummary = document.querySelector("#subject-summary");
   const periodControl = document.querySelector("#period-control");
   const periodSelect = document.querySelector("#period-select");
+  const gradeSixResources = document.querySelector("#grade-six-resources");
   const activityTitle = document.querySelector("#activity-title");
   const activityLevel = document.querySelector("#activity-level");
   const instructions = document.querySelector("#activity-instructions");
@@ -384,6 +385,7 @@
 
   function updateGrade() {
     gradeTitle.textContent = grades[currentGrade].label;
+    gradeSixResources.hidden = currentGrade !== "Grade 6";
     subjectSummary.textContent = curriculum[currentGrade]
       ? "Vocabulary · Grammar · Listening · Speaking · Reading · Writing"
       : "Vocabulary · Grammar · Reading · Writing";
