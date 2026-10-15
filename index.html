@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f4ff">
-  <title>Miss Salma's Hub | English Worksheets</title>
+  <title>Modulo | English Worksheets</title>
   <link rel="stylesheet" href="assets/andika.css">
   <style>
     :root {
@@ -75,6 +75,8 @@
     }
     .site-nav a:hover, .site-nav a[aria-current="page"] { background: var(--lilac); color: var(--purple-dark); }
     main { padding: 18px 0 54px; }
+    .home-layout { display: grid; grid-template-columns: minmax(0, 1fr) 230px; align-items: start; gap: 20px; }
+    .home-content { min-width: 0; }
     .hero { padding: 31px 0 28px; }
     .eyebrow {
       display: inline-block;
@@ -83,7 +85,6 @@
       font-size: .82rem;
       font-weight: 800;
       letter-spacing: .09em;
-      text-transform: uppercase;
     }
     h1, h2, h3, p { margin-top: 0; }
     h1 {
@@ -95,6 +96,49 @@
     }
     h1 span { color: var(--purple); }
     .hero p { max-width: 640px; margin-bottom: 0; color: var(--muted); font-size: 1.12rem; }
+    .grade-panel {
+      position: sticky;
+      top: 18px;
+      margin-top: 31px;
+      padding: 19px;
+      border: 1px solid #d9d0f2;
+      border-radius: 20px;
+      background: linear-gradient(150deg, #f0ebff, #fff 80%);
+      box-shadow: var(--shadow);
+    }
+    .grade-panel h2 { margin: 0 0 5px; font-size: 1.2rem; }
+    .grade-panel > p { margin-bottom: 14px; color: var(--muted); font-size: .92rem; }
+    .grade-panel label { display: block; margin-bottom: 6px; font-weight: 800; }
+    .grade-select {
+      width: 100%;
+      min-height: 46px;
+      padding: 9px 11px;
+      border: 2px solid #dcd7e9;
+      border-radius: 11px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+    }
+    .grade-selection-status { min-height: 1.5em; margin: 10px 0 0 !important; color: var(--purple-dark) !important; font-weight: 700; }
+    .grade-panel-note { margin: 8px 0 0 !important; color: var(--muted) !important; font-size: .82rem !important; }
+    .grade-browser { margin-top: 20px; }
+    .grade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 175px), 1fr)); gap: 10px; }
+    .grade-link {
+      display: flex;
+      min-height: 82px;
+      flex-direction: column;
+      justify-content: center;
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #fdfcff;
+      color: var(--purple-dark);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .grade-link:hover { border-color: #c9baf2; box-shadow: 0 8px 18px rgb(55 40 100 / 9%); }
+    .grade-link span { color: var(--teal); font-size: .84rem; }
     .section-grid { display: grid; gap: 18px; }
     .category {
       scroll-margin-top: 16px;
@@ -165,7 +209,9 @@
     footer { padding: 18px 0 28px; color: var(--muted); font-size: .9rem; text-align: center; }
     @media (max-width: 620px) {
       .shell { width: min(100% - 22px, 1000px); }
+      .home-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
       .hero { padding: 22px 0; }
+      .grade-panel { position: static; margin: 0 0 18px; }
       .category { padding: 17px; }
       .category-heading { gap: 10px; }
       .category-heading h2 { font-size: 1.17rem; }
@@ -175,12 +221,17 @@
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="assets/halloween-theme.css">
 </head>
 <body>
+  <a class="seasonal-banner" href="index.html" aria-label="Modulo home">
+    <img src="assets/halloween-season.jfif" alt="Halloween-themed Modulo logo with a smiling pumpkin">
+    <span class="seasonal-tagline">Learning is exciting</span>
+  </a>
   <header class="topbar shell">
-    <a class="brand" href="index.html" aria-label="Miss Salma's Hub home">
+    <a class="brand" href="index.html" aria-label="Modulo home">
       <img class="brand-photo" src="assets/miss-salma-photo.jfif" alt="">
-      <span>Miss Salma's Hub</span>
+      <span>Modulo</span>
     </a>
     <nav class="site-nav" aria-label="Worksheet sections">
       <a href="#basics-vocabulary">Basics &amp; Vocabulary</a>
@@ -191,13 +242,15 @@
   </header>
 
   <main class="shell">
-    <section class="hero" aria-labelledby="page-title">
-      <p class="eyebrow">Practise English · At your own pace</p>
-      <h1 id="page-title">Welcome to <span>Miss Salma's Hub</span></h1>
-      <p>Choose a section and explore. Start with the basics, practise grammar, or come back soon for reading and writing activities.</p>
-    </section>
+    <div class="home-layout">
+      <div class="home-content">
+        <section class="hero" aria-labelledby="page-title">
+          <p class="eyebrow">Practise English · At your own pace</p>
+          <h1 id="page-title">Welcome to <span>Modulo</span></h1>
+          <p>Explore vocabulary, reading, grammar, and writing practice created for every kindergarten and school grade.</p>
+        </section>
 
-    <div class="section-grid">
+        <div class="section-grid">
       <section class="category" id="basics-vocabulary" aria-labelledby="basics-title">
         <div class="category-heading">
           <span class="category-icon" aria-hidden="true">🔤</span>
@@ -227,7 +280,7 @@
             <p>Understand common teacher instructions and classroom actions.</p>
             <span class="card-action">Open worksheet →</span>
           </a>
-          <p class="level-note">Choose a level: Easy, The Curious Researcher; Medium, The Keen Observer; or Hard, The language guru. Activities include timed practice and friendly feedback.</p>
+          <p class="level-note">Choose a level: Easy, The Curious Researcher; Medium, The Keen Observer; or Hard, The Language Guru. Activities include timed practice and friendly feedback.</p>
         </div>
       </section>
 
@@ -277,16 +330,89 @@
           </div>
         </div>
         <div class="worksheet-grid">
-          <div class="worksheet-card coming-soon">
-            <h3>Writing activities</h3>
-            <p>Writing prompts and guided practice will be added here.</p>
-            <span class="card-action">Activities coming soon</span>
-          </div>
+          <a class="worksheet-card" href="#grade-browser-title">
+            <h3>Writing by grade</h3>
+            <p>Explore age-progressive writing prompts and guided practice for every school level.</p>
+            <span class="card-action">Choose a grade →</span>
+          </a>
         </div>
       </section>
+        </div>
+      </div>
+
+      <aside class="grade-panel" aria-labelledby="grade-panel-title">
+        <h2 id="grade-panel-title">Choose your level</h2>
+        <p>Select your kindergarten or school grade. Your choice will be remembered on this device.</p>
+        <label for="grade-select">School level</label>
+        <select class="grade-select" id="grade-select">
+          <option value="">Choose a level</option>
+          <optgroup label="Kindergarten">
+            <option value="KG1">KG 1</option>
+            <option value="KG2">KG 2</option>
+            <option value="KG3">KG 3</option>
+          </optgroup>
+          <optgroup label="Grades">
+            <option value="Grade 1">Grade 1</option>
+            <option value="Grade 2">Grade 2</option>
+            <option value="Grade 3">Grade 3</option>
+            <option value="Grade 4">Grade 4</option>
+            <option value="Grade 5">Grade 5</option>
+            <option value="Grade 6">Grade 6</option>
+            <option value="Grade 7">Grade 7</option>
+            <option value="Grade 8">Grade 8</option>
+            <option value="Grade 9">Grade 9</option>
+          </optgroup>
+        </select>
+        <p class="grade-selection-status" id="grade-selection-status" aria-live="polite">No level selected yet.</p>
+        <p class="grade-panel-note">Browse activities for every grade below.</p>
+      </aside>
     </div>
+    <section class="category grade-browser" aria-labelledby="grade-browser-title">
+      <div class="category-heading">
+        <span class="category-icon" aria-hidden="true">🎓</span>
+        <div>
+          <h2 id="grade-browser-title">Browse activities by grade</h2>
+          <p>Each grade includes vocabulary, reading, grammar, and writing practice.</p>
+        </div>
+      </div>
+      <div class="grade-grid">
+        <a class="grade-link" href="grade-activities.html?grade=KG1">KG 1 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=KG2">KG 2 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=KG3">KG 3 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%201">Grade 1 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%202">Grade 2 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%203">Grade 3 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%204">Grade 4 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%205">Grade 5 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%206">Grade 6 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%207">Grade 7 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%208">Grade 8 <span>Explore activities →</span></a>
+        <a class="grade-link" href="grade-activities.html?grade=Grade%209">Grade 9 <span>Explore activities →</span></a>
+      </div>
+    </section>
   </main>
 
   <footer class="shell">Short steps, kind practice, and learning at your own pace.</footer>
+  <script>
+    const gradeSelect = document.querySelector("#grade-select");
+    const gradeSelectionStatus = document.querySelector("#grade-selection-status");
+    const savedGrade = localStorage.getItem("miss-salma-selected-grade");
+
+    if ([...gradeSelect.options].some(option => option.value === savedGrade)) {
+      gradeSelect.value = savedGrade;
+      gradeSelectionStatus.textContent = `Your selected level: ${gradeSelect.selectedOptions[0].textContent}.`;
+    }
+
+    gradeSelect.addEventListener("change", () => {
+      const selectedGrade = gradeSelect.value;
+      if (!selectedGrade) {
+        localStorage.removeItem("miss-salma-selected-grade");
+        gradeSelectionStatus.textContent = "No level selected yet.";
+        return;
+      }
+      localStorage.setItem("miss-salma-selected-grade", selectedGrade);
+      gradeSelectionStatus.textContent = `Your selected level: ${gradeSelect.selectedOptions[0].textContent}.`;
+    });
+  </script>
 </body>
 </html>

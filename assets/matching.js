@@ -34,7 +34,7 @@ const matchLevelSeconds = { starter: 60, builder: 45, challenge: 30 };
 const matchLevelNames = {
   starter: "Easy: The Curious Researcher",
   builder: "Medium: The Keen Observer",
-  challenge: "Hard: The language guru"
+  challenge: "Hard: The Language Guru"
 };
 const matchingTimer = window.createActivityTimer(
   document.querySelector("#matching-timer"),

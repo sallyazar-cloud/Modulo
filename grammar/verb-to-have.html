@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f4ff">
-  <title>Verb To Have | Miss Salma's Hub</title>
+  <title>Verb To Have | Modulo</title>
   <link rel="stylesheet" href="../assets/andika.css">
   <style>
     :root {
@@ -97,7 +97,6 @@
       font-size: .82rem;
       font-weight: 800;
       letter-spacing: .09em;
-      text-transform: uppercase;
     }
     h1, h2, h3, p { margin-top: 0; }
     h1 {
@@ -289,12 +288,17 @@
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/halloween-theme.css">
 </head>
 <body>
+  <a class="seasonal-banner" href="../index.html" aria-label="Modulo home">
+    <img src="../assets/halloween-season.jfif" alt="Halloween-themed Modulo logo with a smiling pumpkin">
+    <span class="seasonal-tagline">Learning is exciting</span>
+  </a>
   <header class="topbar shell">
-    <a class="brand" href="../index.html" aria-label="Miss Salma's Hub home">
+    <a class="brand" href="../index.html" aria-label="Modulo home">
       <img class="brand-photo" src="../assets/miss-salma-photo.jfif" alt="">
-      <span>Miss Salma's Hub</span>
+      <span>Modulo</span>
     </a>
     <nav class="site-nav" aria-label="Worksheet sections">
       <a href="../index.html#basics-vocabulary">Basics &amp; Vocabulary</a>
@@ -323,7 +327,7 @@
       <div class="level-picker" role="group" aria-label="Choose a difficulty level">
         <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
         <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
-        <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The language guru</button>
+        <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
       </div>
       <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
     </section>
@@ -489,11 +493,11 @@
       document.querySelector("#activity-title").textContent =
         `Questions · ${currentLevel === "easy" ? "Easy: The Curious Researcher"
           : currentLevel === "medium" ? "Medium: The Keen Observer"
-          : "Hard: The language guru"}`;
+          : "Hard: The Language Guru"}`;
       document.querySelector("#level-label").textContent =
         currentLevel === "easy" ? "Easy: The Curious Researcher"
           : currentLevel === "medium" ? "Medium: The Keen Observer"
-          : "Hard: The language guru";
+          : "Hard: The Language Guru";
       document.querySelector("#level-description").textContent =
         currentLevel === "easy" ? "Try a small set of have and has questions. You have 60 seconds."
           : currentLevel === "medium" ? "Practise negatives and questions. You have 45 seconds."

@@ -196,7 +196,7 @@ const levelSeconds = { starter: 60, builder: 45, challenge: 30 };
 const levelNames = {
   starter: "Easy: The Curious Researcher",
   builder: "Medium: The Keen Observer",
-  challenge: "Hard: The language guru"
+  challenge: "Hard: The Language Guru"
 };
 const submitButton = form.querySelector('[type="submit"]');
 const activityTimer = window.createActivityTimer(
@@ -387,7 +387,7 @@ function resetActivity() {
 }
 
 document.querySelector("#page-title").textContent = worksheet.title;
-document.querySelector("#document-title").textContent = `${worksheet.title} | Miss Salma's Hub`;
+document.querySelector("#document-title").textContent = `${worksheet.title} | Modulo`;
 document.querySelector("#page-eyebrow").textContent = worksheet.eyebrow;
 document.querySelector("#page-intro").textContent = worksheet.intro;
 renderReference();

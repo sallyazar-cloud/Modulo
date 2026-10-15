@@ -13,3 +13,21 @@
   font-display: swap;
   src: url("fonts/Andika-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Andika";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Arial"), local("Helvetica Neue");
+  unicode-range: U+0049;
+}
+
+@font-face {
+  font-family: "Andika";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Arial Bold"), local("Arial");
+  unicode-range: U+0049;
+}

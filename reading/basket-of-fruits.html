@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f4ff">
-  <title>The Basket of Colorful Fruits | Miss Salma's Hub</title>
+  <title>The Basket of Colorful Fruits | Modulo</title>
   <link rel="stylesheet" href="../assets/andika.css">
   <style>
     :root {
@@ -44,7 +44,7 @@
     h1, h2, p { margin-top: 0; }
     h1 { margin-bottom: 8px; font-size: clamp(2rem, 7vw, 3.3rem); line-height: 1.12; }
     h1 span { color: var(--purple); }
-    .eyebrow { margin-bottom: 8px; color: var(--teal); font-size: .83rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .eyebrow { margin-bottom: 8px; color: var(--teal); font-size: .83rem; font-weight: 700; letter-spacing: .07em; }
     .intro { max-width: 650px; margin-bottom: 22px; color: var(--muted); }
     .storybook, .quiz { overflow: hidden; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); box-shadow: 0 14px 40px rgb(55 40 100 / 9%); }
     .story-art { display: block; width: 100%; max-height: 340px; object-fit: cover; }
@@ -147,12 +147,17 @@
       .quiz-item.is-correct, .quiz-item.is-incorrect { animation: none; }
     }
   </style>
+  <link rel="stylesheet" href="../assets/halloween-theme.css">
 </head>
 <body>
+  <a class="seasonal-banner" href="../index.html" aria-label="Modulo home">
+    <img src="../assets/halloween-season.jfif" alt="Halloween-themed Modulo logo with a smiling pumpkin">
+    <span class="seasonal-tagline">Learning is exciting</span>
+  </a>
   <header class="topbar shell">
-    <a class="brand" href="../index.html" aria-label="Miss Salma's Hub home">
+    <a class="brand" href="../index.html" aria-label="Modulo home">
       <img class="brand-photo" src="../assets/miss-salma-photo.jfif" alt="">
-      <span>Miss Salma's Hub</span>
+      <span>Modulo</span>
     </a>
     <nav class="site-nav" aria-label="Worksheet sections">
       <a href="../index.html#basics-vocabulary">Basics &amp; Vocabulary</a>
@@ -182,12 +187,12 @@
 
     <section class="fruit-game" id="fruit-game" aria-labelledby="fruit-game-title">
       <h2 id="fruit-game-title">Fruit picture card game</h2>
-      <p class="fruit-game-intro">Match each fruit picture to its name. Drag a picture onto a name, or tap a picture and then its name. Easy: The Curious Researcher has 4 fruits and 60 seconds. Medium: The Keen Observer has 6 fruits and 45 seconds. Hard: The language guru has 8 fruits and 30 seconds. The timer starts with your first move.</p>
+      <p class="fruit-game-intro">Match each fruit picture to its name. Drag a picture onto a name, or tap a picture and then its name. Easy: The Curious Researcher has 4 fruits and 60 seconds. Medium: The Keen Observer has 6 fruits and 45 seconds. Hard: The Language Guru has 8 fruits and 30 seconds. The timer starts with your first move.</p>
       <div class="game-toolbar">
         <div class="difficulty-picker" role="group" aria-label="Choose game difficulty">
           <button class="difficulty-button" type="button" data-difficulty="easy" aria-pressed="true">Easy: The Curious Researcher</button>
           <button class="difficulty-button" type="button" data-difficulty="medium" aria-pressed="false">Medium: The Keen Observer</button>
-          <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">Hard: The language guru</button>
+          <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">Hard: The Language Guru</button>
         </div>
         <button class="game-reset" id="fruit-game-reset" type="button">Restart game</button>
       </div>
@@ -216,7 +221,7 @@
         <div class="quiz-level-picker" role="group" aria-label="Choose quiz difficulty">
           <button class="quiz-level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
           <button class="quiz-level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
-          <button class="quiz-level-button" type="button" data-level="hard" aria-pressed="false">Hard: The language guru</button>
+          <button class="quiz-level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
         </div>
         <div class="quiz-meta">
           <span class="quiz-timer" id="quiz-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
@@ -247,7 +252,7 @@
     const levelTitles = {
       easy: "Easy: The Curious Researcher",
       medium: "Medium: The Keen Observer",
-      hard: "Hard: The language guru"
+      hard: "Hard: The Language Guru"
     };
     const fruitPictures = {
       apple: "🍎",

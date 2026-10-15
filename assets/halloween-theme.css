@@ -1,0 +1,85 @@
+:root {
+  --ink: #2d1b3b;
+  --muted: #695876;
+  --purple: #df7624;
+  --purple-dark: #4d255f;
+  --lilac: #f5e8fa;
+  --teal: #a94716;
+  --mint: #f5e6d7;
+  --yellow: #ffd36a;
+  --line: #e8d9e9;
+  --good: #24734f;
+  --good-bg: #e8f7ec;
+  --try: #953c19;
+  --try-bg: #fff0e4;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 8% 12%, #ffe3bd 0, transparent 25rem),
+    radial-gradient(ellipse at 96% 32%, #efe2f7 0, transparent 28rem),
+    #fbf7fc;
+}
+
+.seasonal-banner {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: clamp(170px, 24vw, 320px);
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 5px solid #ed852d;
+  background:
+    radial-gradient(ellipse at center, #3c2455, #1d122a 72%);
+}
+
+.seasonal-banner img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.seasonal-tagline {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  padding: 1px 12px;
+  transform: translateX(-50%);
+  border: 1px solid rgb(239 133 45 / 45%);
+  border-radius: 999px;
+  background: rgb(35 20 49 / 97%);
+  box-shadow: 0 2px 8px rgb(16 9 24 / 45%);
+  color: #ffad4c;
+  font-size: clamp(.82rem, 1.6vw, 1.1rem);
+  font-weight: 800;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.brand { color: var(--purple-dark) !important; }
+.brand-photo { border-color: #ffedd9 !important; }
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  background: var(--lilac) !important;
+  color: var(--purple-dark) !important;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #e98327, #c95520) !important;
+  box-shadow: 0 5px 12px rgb(190 81 29 / 22%) !important;
+}
+
+.primary-button:hover { background: #b8491d !important; }
+.level-button[aria-pressed="true"] {
+  background: var(--lilac) !important;
+  color: var(--purple-dark) !important;
+}
+.category-icon { background: #f8e8fa !important; }
+.grade-panel { background: linear-gradient(150deg, #f7e8f7, #fff7ec 82%) !important; }
+.grade-link:hover { border-color: #dfa05f !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
