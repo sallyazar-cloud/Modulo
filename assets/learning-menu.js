@@ -8,11 +8,16 @@
     ["Grade 4", "Grade 4"], ["Grade 5", "Grade 5"], ["Grade 6", "Grade 6"],
     ["Grade 7", "Grade 7"], ["Grade 8", "Grade 8"], ["Grade 9", "Grade 9"]
   ];
-  const subjects = [
+  const coreSubjects = [
     ["Vocabulary", "vocabulary"],
     ["Reading", "reading"],
     ["Grammar", "grammar"],
     ["Writing", "writing"]
+  ];
+  const curriculumSubjects = [
+    ...coreSubjects,
+    ["Listening", "listening"],
+    ["Speaking", "speaking"]
   ];
   const currentGrade = new URLSearchParams(window.location.search).get("grade")
     || localStorage.getItem("miss-salma-selected-grade")
@@ -38,7 +43,8 @@
       gradeSummary.textContent = grade[1];
       const subjectLinks = document.createElement("div");
       subjectLinks.className = "learning-menu-grade-subjects";
-      subjects.forEach(subject => {
+      const gradeSubjects = /^Grade [1-5]$/.test(grade[0]) ? curriculumSubjects : coreSubjects;
+      gradeSubjects.forEach(subject => {
         const link = document.createElement("a");
         link.href = `${pathPrefix}grade-activities.html?grade=${encodeURIComponent(grade[0])}#${subject[1]}`;
         link.textContent = subject[0];

@@ -321,8 +321,12 @@
   };
 
   const gradeOptions = Object.keys(grades);
+  const curriculum = window.MODULO_GRADE_CURRICULUM;
   const params = new URLSearchParams(window.location.search);
   const gradeTitle = document.querySelector("#grade-title");
+  const subjectSummary = document.querySelector("#subject-summary");
+  const periodControl = document.querySelector("#period-control");
+  const periodSelect = document.querySelector("#period-select");
   const activityTitle = document.querySelector("#activity-title");
   const activityLevel = document.querySelector("#activity-level");
   const instructions = document.querySelector("#activity-instructions");
@@ -334,22 +338,61 @@
   const levelButtons = [...document.querySelectorAll("[data-level]")];
   let currentGrade = gradeOptions.includes(params.get("grade")) ? params.get("grade") : null;
   let currentLevel = "easy";
-  let currentSubject = ["vocabulary", "reading", "grammar", "writing"].includes(window.location.hash.slice(1))
+  let currentPeriod = 0;
+  let currentSubject = ["vocabulary", "reading", "grammar", "writing", "listening", "speaking"].includes(window.location.hash.slice(1))
     ? window.location.hash.slice(1)
     : "vocabulary";
   let complete = false;
+  let practicedLesson = false;
+  let listeningUtterance = null;
+
+  function cancelListeningAudio() {
+    if (!("speechSynthesis" in window)) return;
+    if (listeningUtterance) {
+      listeningUtterance.onend = null;
+      listeningUtterance.onerror = null;
+      listeningUtterance = null;
+    }
+    window.speechSynthesis.cancel();
+  }
 
   const savedGrade = localStorage.getItem("miss-salma-selected-grade");
   if (!currentGrade && gradeOptions.includes(savedGrade)) currentGrade = savedGrade;
   if (!currentGrade) currentGrade = gradeOptions[0];
+  if (!curriculum[currentGrade] && ["listening", "speaking"].includes(currentSubject)) {
+    currentSubject = "vocabulary";
+  }
   localStorage.setItem("miss-salma-selected-grade", currentGrade);
+
+  function updatePeriodOptions() {
+    const gradeCurriculum = curriculum[currentGrade];
+    periodControl.hidden = !gradeCurriculum;
+    periodSelect.replaceChildren();
+    if (!gradeCurriculum) {
+      currentPeriod = 0;
+      return;
+    }
+    gradeCurriculum.periods.forEach((period, index) => {
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = period.title;
+      periodSelect.append(option);
+    });
+    currentPeriod = Math.min(currentPeriod, gradeCurriculum.periods.length - 1);
+    periodSelect.value = String(currentPeriod);
+  }
 
   function updateGrade() {
     gradeTitle.textContent = grades[currentGrade].label;
+    subjectSummary.textContent = curriculum[currentGrade]
+      ? "Vocabulary · Grammar · Listening · Speaking · Reading · Writing"
+      : "Vocabulary · Grammar · Reading · Writing";
     document.title = `${grades[currentGrade].label} Activities | Modulo`;
+    updatePeriodOptions();
   }
 
   const timer = window.createActivityTimer(timerDisplay, () => {
+    cancelListeningAudio();
     feedback.className = "feedback incorrect";
     feedback.textContent = "Time is up. Try again to have another go.";
     disableInputs(true);
@@ -357,40 +400,152 @@
   });
 
   function disableInputs(disabled) {
-    const input = content.querySelector("select, textarea");
-    if (input) input.disabled = disabled;
+    content.querySelectorAll("select, textarea, button").forEach(input => {
+      input.disabled = disabled;
+    });
     checkButton.disabled = disabled;
   }
 
   function renderActivity() {
+    cancelListeningAudio();
     const level = levels[currentLevel];
     const item = grades[currentGrade][currentSubject];
-    const activity = currentSubject === "reading"
+    const gradeCurriculum = curriculum[currentGrade];
+    const period = gradeCurriculum && gradeCurriculum.periods[currentPeriod];
+    let lesson = period && period.skills[currentSubject];
+    if (period && currentSubject === "vocabulary") {
+      lesson = [
+        `Recognise and use key English words about ${period.focus}.`,
+        "Identifies and uses familiar words connected to this period’s lesson focus.",
+        period.skills.reading[2]
+      ];
+    } else if (period && currentSubject === "grammar") {
+      lesson = [
+        `Practise the sentence patterns used when talking about ${period.focus}.`,
+        period.skills.speaking[1],
+        period.skills.speaking[2]
+      ];
+    }
+    const activity = currentSubject === "reading" && item
       ? item.questions[level.index]
-      : currentSubject === "vocabulary" || currentSubject === "grammar"
+      : (currentSubject === "vocabulary" || currentSubject === "grammar") && item
         ? item[level.index]
         : null;
     complete = false;
+    practicedLesson = false;
     timer.reset(level.seconds);
     feedback.className = "feedback";
     feedback.textContent = "";
     retryButton.hidden = true;
     checkButton.disabled = false;
+    checkButton.textContent = currentSubject === "listening" || currentSubject === "speaking" ? "Finish lesson" : "Check answer";
     activityLevel.textContent = level.label;
     activityTitle.textContent = {
       vocabulary: "Vocabulary challenge",
       reading: "Reading comprehension",
       grammar: "Grammar practice",
-      writing: "Writing workshop"
+      writing: "Writing workshop",
+      listening: "Listening lesson",
+      speaking: "Speaking lesson"
     }[currentSubject];
-    instructions.textContent = currentSubject === "reading"
+    instructions.textContent = currentSubject === "listening"
+      ? "Listen to the spoken lesson task, then mark your practice complete."
+      : currentSubject === "speaking"
+        ? "Say the lesson task aloud, then mark your speaking practice complete."
+        : currentSubject === "reading"
       ? "Read the passage, then answer the question."
       : currentSubject === "writing"
         ? "Write your response in the space below. There is no single right answer."
         : "Choose the best answer, then check your work.";
     content.replaceChildren();
 
-    if (currentSubject === "reading") {
+    if (period) {
+      const brief = document.createElement("section");
+      brief.className = "lesson-brief";
+      const heading = document.createElement("h3");
+      heading.textContent = `${gradeCurriculum.sourceClass} curriculum · ${period.title}`;
+      const focus = document.createElement("p");
+      focus.textContent = `Lesson focus: ${period.focus}.`;
+      brief.append(heading, focus);
+
+      if (lesson) {
+        const details = document.createElement("dl");
+        [
+          ["Learning objective", lesson[0]],
+          ["Success criteria", lesson[1]],
+          ["Suggested lesson task", lesson[2]]
+        ].forEach(([label, value]) => {
+          const term = document.createElement("dt");
+          term.textContent = label;
+          const description = document.createElement("dd");
+          description.textContent = value;
+          details.append(term, description);
+        });
+        brief.append(details);
+      } else {
+        const connection = document.createElement("p");
+        connection.className = "lesson-task";
+        connection.textContent = `Apply the words and sentence patterns from this lesson: ${period.focus}.`;
+        brief.append(connection);
+      }
+      content.append(brief);
+    }
+
+    if (currentSubject === "listening" || currentSubject === "speaking") {
+      const task = document.createElement("p");
+      task.className = "question";
+      task.textContent = lesson ? lesson[2] : "Practise the current lesson aloud.";
+      if (currentSubject === "listening") {
+        const playButton = document.createElement("button");
+        playButton.type = "button";
+        playButton.className = "skill-action";
+        playButton.textContent = "Play listening task";
+        playButton.addEventListener("click", () => {
+          timer.start();
+          if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+            practicedLesson = true;
+            feedback.className = "feedback incorrect";
+            feedback.textContent = "Audio playback is unavailable. Read the lesson task and practise it with a teacher before finishing.";
+            return;
+          }
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(task.textContent);
+          utterance.lang = "en-US";
+          utterance.onend = () => {
+            if (listeningUtterance !== utterance) return;
+            listeningUtterance = null;
+            practicedLesson = true;
+            feedback.className = "feedback";
+            feedback.textContent = "You heard the lesson task. Press Finish lesson when you are ready.";
+          };
+          utterance.onerror = event => {
+            if (listeningUtterance !== utterance) return;
+            listeningUtterance = null;
+            practicedLesson = true;
+            feedback.className = "feedback incorrect";
+            feedback.textContent = `Audio playback failed: ${event.error}. Read the lesson task and practise it with a teacher before finishing.`;
+          };
+          listeningUtterance = utterance;
+          window.speechSynthesis.speak(utterance);
+        });
+        content.append(task, playButton);
+      } else {
+        const practiceButton = document.createElement("button");
+        practiceButton.type = "button";
+        practiceButton.className = "skill-action";
+        practiceButton.textContent = "I practised speaking aloud";
+        practiceButton.addEventListener("click", () => {
+          timer.start();
+          practicedLesson = true;
+          feedback.className = "feedback";
+          feedback.textContent = "Well done practising aloud. Press Finish lesson when you are ready.";
+        });
+        content.append(task, practiceButton);
+      }
+      return;
+    }
+
+    if (currentSubject === "reading" && item) {
       const passage = document.createElement("p");
       passage.className = "passage";
       passage.textContent = item.passage;
@@ -400,7 +555,7 @@
     if (currentSubject === "writing") {
       const prompt = document.createElement("p");
       prompt.className = "question";
-      prompt.textContent = item[level.index];
+      prompt.textContent = lesson ? lesson[2] : item[level.index];
       const response = document.createElement("textarea");
       response.className = "writing-response";
       response.id = "writing-response";
@@ -408,6 +563,15 @@
       response.placeholder = "Type your ideas here...";
       response.addEventListener("input", () => timer.start(), { once: true });
       content.append(prompt, response);
+      return;
+    }
+
+    if (!activity) {
+      const unavailable = document.createElement("p");
+      unavailable.className = "feedback incorrect";
+      unavailable.textContent = "There is no activity available for this grade and subject.";
+      content.append(unavailable);
+      checkButton.disabled = true;
       return;
     }
 
@@ -445,6 +609,11 @@
     });
   });
 
+  periodSelect.addEventListener("change", () => {
+    currentPeriod = Number(periodSelect.value);
+    renderActivity();
+  });
+
   window.addEventListener("hashchange", () => activateSubject(window.location.hash.slice(1)));
 
   checkButton.addEventListener("click", () => {
@@ -461,6 +630,24 @@
       timer.stop();
       feedback.className = "feedback correct";
       feedback.textContent = "Nice work getting your ideas down. Read them once more and check your punctuation.";
+      disableInputs(true);
+      return;
+    }
+
+    if (currentSubject === "listening" || currentSubject === "speaking") {
+      if (!practicedLesson) {
+        feedback.className = "feedback incorrect";
+        feedback.textContent = currentSubject === "listening"
+          ? "Play the listening task before finishing this lesson."
+          : "Practise the speaking task aloud before finishing this lesson.";
+        return;
+      }
+      complete = true;
+      timer.stop();
+      feedback.className = "feedback correct";
+      feedback.textContent = currentSubject === "listening"
+        ? "Listening practice complete. Great work!"
+        : "Speaking practice complete. Great work!";
       disableInputs(true);
       return;
     }

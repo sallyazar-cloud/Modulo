@@ -1,12 +1,14 @@
 # Modulo
 
-Colorful, browser-based English worksheets organized into four learning sections.
+Colorful, browser-based English worksheets organized into six subject areas for Grades 1–5 and four for the other grade levels.
 
 ## Use it
 
 Open `index.html` in a modern web browser to visit the hub. No installation, account, or internet connection is needed.
 
-The top-left **Classes & subjects** menu is the main navigation: expand KG 1–KG 3 or Grades 1–9 to find that class's Vocabulary, Reading, Grammar, and Writing activities. The last selected grade is saved in the browser on the current device.
+The top-left **Classes & subjects** menu is the main navigation: expand KG 1–KG 3 or Grades 1–9 to find that class's activities. Grades 1–5 include Vocabulary, Grammar, Listening, Speaking, Reading, and Writing; other grades retain Vocabulary, Grammar, Reading, and Writing.
+
+Grade 1 lessons follow the workbook's CP plan, Grade 2 follows CE1, and Grade 3 follows CE2. Grades 4–5 extend CE2 progressively. Grade 1–5 lesson pages include five period plans, learning objectives, success criteria, and suggested tasks; listening tasks can be played aloud.
 
 The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/halloween-season.jfif`, so the theme can be updated or removed later without changing worksheet content.
 

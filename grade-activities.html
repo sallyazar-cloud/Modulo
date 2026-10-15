@@ -24,7 +24,7 @@
 
   <main class="shell">
     <section class="hero" aria-labelledby="page-title">
-      <p class="eyebrow">Vocabulary · Reading · Grammar · Writing</p>
+      <p class="eyebrow" id="subject-summary"></p>
       <h1 id="page-title">English practice for <span id="grade-title">your grade</span></h1>
       <p>Choose a subject from the top-left menu, then pick a challenge level.</p>
     </section>
@@ -36,6 +36,10 @@
         <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
       </div>
       <p class="timer-label" id="timer" aria-live="off">Time: 60 seconds</p>
+    </div>
+    <div class="period-control" id="period-control" hidden>
+      <label for="period-select">Lesson period</label>
+      <select id="period-select" class="control"></select>
     </div>
 
     <section class="activity" aria-labelledby="activity-title">
@@ -56,6 +60,7 @@
   <footer class="shell">Short steps, kind practice, and learning at your own pace.</footer>
   <script src="assets/activity-timer.js"></script>
   <script src="assets/learning-menu.js"></script>
+  <script src="assets/grade-curriculum.js"></script>
   <script src="assets/grade-activities.js"></script>
 </body>
 </html>
