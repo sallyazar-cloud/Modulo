@@ -230,9 +230,9 @@
         ]
       },
       grammar: [
-        ["Choose the correct verb: The list of supplies ___ on the desk.", ["is", "are", "were"], "is"],
-        ["Choose the best transition: The route was longer; ___, it was safer.", ["however", "because", "meanwhile"], "however"],
-        ["Choose the sentence with a correct apostrophe.", ["The students' projects filled the hall.", "The student's projects filled the hall. (many students)", "The students projects filled the hall."], "The students' projects filled the hall."]
+        ["Choose the correct verb: I ___ a new school bag.", ["have", "has", "having"], "have"],
+        ["Choose the correct question: ___ your sister have a pet?", ["Do", "Does", "Has"], "Does"],
+        ["Choose the correct negative sentence.", ["He doesn't have a blue notebook.", "He don't have a blue notebook.", "He doesn't has a blue notebook."], "He doesn't have a blue notebook."]
       ],
       writing: [
         "Summarize the passage in two sentences without adding an opinion.",
@@ -517,6 +517,24 @@
         competencyList.append(summary, list);
         brief.append(competencyList);
       }
+      content.append(brief);
+    }
+
+    if (currentGrade === "Grade 6" && currentSubject === "grammar") {
+      const brief = document.createElement("section");
+      brief.className = "lesson-brief";
+      const heading = document.createElement("h3");
+      heading.textContent = "Learning period 2 · People, family, and possessions";
+      const objective = document.createElement("p");
+      objective.textContent = "Grammar focus: use have and has to describe what people and their family members possess.";
+      const task = document.createElement("p");
+      task.className = "lesson-task";
+      task.textContent = "Practise have with I/you/we/they; has with he/she/it; and questions and negatives with do/does.";
+      const worksheetLink = document.createElement("a");
+      worksheetLink.className = "skill-action";
+      worksheetLink.href = "grammar/verb-to-have.html?grade=Grade%206";
+      worksheetLink.textContent = "Open the full Have and Has Grammar Lab";
+      brief.append(heading, objective, task, worksheetLink);
       content.append(brief);
     }
 
