@@ -14,6 +14,88 @@
     }))
   });
 
+  const collegeProfiles = {
+    "Grade 6": {
+      sourceClass: "Sixième",
+      levelDescription: "CEFR targets: LVB A1; LVA A1+. The five programme culture axes are covered.",
+      detailTarget: "two",
+      speakingTarget: "a short prepared presentation using familiar phrases and a few linked details",
+      interactionTarget: "a simple, familiar exchange with support, repetition, and a clear model",
+      readingTarget: "short, concrete texts with familiar words, pictures, and explicit information",
+      writingTarget: "three or four simple modelled sentences, a completed form, or a short dictated message",
+      writingTask: "Write a short illustrated profile, caption, or message using a familiar model."
+    },
+    "Grade 7": {
+      sourceClass: "Cinquième",
+      levelDescription: "CEFR targets: LVB A1+; LVA A2. The plan includes all six culture axes; the programme requires five, including the United Kingdom axis.",
+      detailTarget: "three",
+      speakingTarget: "a short organized presentation, description, or retelling with simple connectors",
+      interactionTarget: "a familiar exchange that includes follow-up questions, clarification, and simple mediation",
+      readingTarget: "short familiar texts, identifying their main information, sequence, and purpose",
+      writingTarget: "a connected paragraph or short message using familiar models and simple connectors",
+      writingTask: "Write a connected profile, story, or message for the period's audience."
+    },
+    "Grade 8": {
+      sourceClass: "Quatrième",
+      levelDescription: "CEFR targets: LVB A1+; LVA A2+. The plan includes all six culture axes; the programme requires five, including the Ireland axis.",
+      detailTarget: "four",
+      speakingTarget: "a clear, organized presentation that explains details and expresses a preference or viewpoint",
+      interactionTarget: "a short, purposeful discussion with follow-up, clarification, and supported comparison of viewpoints",
+      readingTarget: "familiar and informational texts, identifying main ideas, supporting details, and viewpoint clues",
+      writingTarget: "a structured paragraph or short text with relevant details, simple linking, and a clear purpose",
+      writingTask: "Write a structured review, travel account, or proposal that supports a clear point."
+    },
+    "Grade 9": {
+      sourceClass: "Troisième",
+      levelDescription: "CEFR targets: LVB A2; LVA B1. The plan includes all six culture axes; the programme requires five, including the United States axis.",
+      detailTarget: "five",
+      speakingTarget: "a coherent presentation that develops an idea, supports an opinion, and responds to a question",
+      interactionTarget: "an increasingly independent exchange that compares ideas, clarifies meaning, and relays relevant information",
+      readingTarget: "connected texts and media, distinguishing main points, supporting details, and differing perspectives",
+      writingTarget: "a coherent multi-paragraph or extended response using evidence, transitions, and an appropriate register",
+      writingTask: "Write an evidence-informed article, argument, or proposal for a defined audience."
+    }
+  };
+
+  const collegePeriods = (grade, themes) => {
+    const profile = collegeProfiles[grade];
+    const periodData = themes.map(([title, focus, example]) => [
+      title,
+      focus,
+      [
+        `Understand a spoken ${example} and notice words, names, and clues about ${focus.toLowerCase()}.`,
+        `Identifies the main topic and at least ${profile.detailTarget} relevant details in a clearly presented, level-appropriate audio.`,
+        `Listen to a short ${example} and record the main idea and supporting details.`
+      ],
+      [
+        `Present or describe ${focus.toLowerCase()} using English for the current CEFR stage.`,
+        `Delivers ${profile.speakingTarget} and makes the cultural topic understandable.`,
+        `Give a short ${example} presentation and answer a listener's question.`
+      ],
+      [
+        `Read and interpret a short English text about ${focus.toLowerCase()}.`,
+        `Finds the main idea and supporting information in ${profile.readingTarget}.`,
+        `Read a period text and complete a main-idea and evidence organizer.`
+      ],
+      [
+        `Write about ${focus.toLowerCase()} for a clear purpose and audience.`,
+        `Produces ${profile.writingTarget} with relevant information and checked spelling and punctuation.`,
+        profile.writingTask
+      ]
+    ]);
+    const competencies = themes.flatMap(([, focus], index) => {
+      const period = index + 1;
+      return [
+        [period, "Listening", "Listen and interpret", `Understands level-appropriate spoken English about ${focus.toLowerCase()}, identifies its main idea and relevant details, and uses context clues.`],
+        [period, "Reading", "Read and interpret", `Understands a level-appropriate written text about ${focus.toLowerCase()}, locates supporting information, and uses text or visual clues to interpret meaning.`],
+        [period, "Speaking", "Present and express", `Communicates about ${focus.toLowerCase()} through ${profile.speakingTarget}.`],
+        [period, "Interaction and mediation", "React, exchange, and relay information", `Takes part in ${profile.interactionTarget}; checks understanding and relays relevant information about ${focus.toLowerCase()}.`],
+        [period, "Writing", "Write for a purpose", `Creates a level-appropriate written response about ${focus.toLowerCase()}: ${profile.writingTarget}.`]
+      ];
+    });
+    return periods(profile.sourceClass, periodData, competencies, profile.levelDescription);
+  };
+
   window.MODULO_GRADE_CURRICULUM = {
     "Grade 1": periods("CP", [
       ["P1 · Greetings and classroom", "Greetings, feelings, and classroom instructions",
@@ -187,6 +269,37 @@
       [5, "Interaction", "Exchange information", "Asks and answers familiar questions and exchanges simple ideas and information in predictable situations or short discussions, with support when needed."],
       [5, "Writing", "Use familiar structures to build short sentences", "Writes short connected sentences using familiar models and simple connectors, including a description, short email, or simple dialogue."],
       [5, "Writing", "Write to describe, inform, or express a point of view", "Completes a simple form, writes or replies to a short message, and gives a simple response; as an A1+ extension, writes a simple notice or personal online message with support."]
-    ], "At least CEFR A1; A1+ progression with A2 extensions where appropriate.")
+    ], "At least CEFR A1; A1+ progression with A2 extensions where appropriate."),
+    "Grade 6": collegePeriods("Grade 6", [
+      ["P1 · People and characters (Axis 1)", "Portraits, self-portraits, families, fictional characters, and relationships", "character profile"],
+      ["P2 · Everyday life (Axis 2)", "Daily routines, school, play, learning, and young people's lives", "school-day interview"],
+      ["P3 · Countries and landscapes (Axis 3)", "English-speaking places, natural landscapes, wildlife, and geography", "travel and wildlife report"],
+      ["P4 · Imagination, tales, and legends (Axis 4)", "Folklore, heroes, stories, and recurring imaginative themes", "illustrated legend"],
+      ["P5 · Arts and feelings (Axis 5)", "Artistic expression and the feelings or ideas it communicates", "artwork review"]
+    ]),
+    "Grade 7": collegePeriods("Grade 7", [
+      ["P1 · Portraits and self-portraits (Axis 1)", "Identity, portraits, self-portraits, and how people present themselves", "portrait and interview"],
+      ["P2 · Everyday life, places, rhythms, and seasons (Axis 2)", "Daily settings, routines, time, seasons, and changes in everyday life", "daily-life account"],
+      ["P3 · The real and the imaginary (Axis 3)", "How English-language stories blend real settings and imaginative worlds", "story and setting comparison"],
+      ["P4 · School and leisure (Axis 4)", "School experiences, hobbies, leisure, and young people's choices", "school and leisure comparison"],
+      ["P5 · Languages, places, and stories (Axis 5)", "Connections between language, place, history, and storytelling", "place-based story"],
+      ["P6 · The United Kingdom (Axis 6)", "The United Kingdom's diverse places, people, and cultural references", "UK travel guide"]
+    ]),
+    "Grade 8": collegePeriods("Grade 8", [
+      ["P1 · Sport and society (Axis 1)", "Sport, communities, identity, fairness, and social life", "sport profile and viewpoint"],
+      ["P2 · Journeys and exploration (Axis 2)", "Travel, exploration, encounters, and discoveries across the English-speaking world", "explorer's account"],
+      ["P3 · Cities, villages, and neighbourhoods (Axis 3)", "How places are organized and experienced by the people who live there", "neighbourhood feature"],
+      ["P4 · Invent, innovate, create (Axis 4)", "Invention, creativity, design, and how ideas become useful", "invention proposal"],
+      ["P5 · Artistic languages and messages (Axis 5)", "How art forms communicate meaning, identity, and emotion", "art or media review"],
+      ["P6 · Ireland (Axis 6)", "Ireland's places, heritage, languages, and cultural expression", "Ireland cultural guide"]
+    ]),
+    "Grade 9": collegePeriods("Grade 9", [
+      ["P1 · Meeting others (Axis 1)", "Identity, relationships, intercultural encounters, and understanding others", "intercultural profile"],
+      ["P2 · Work: past, present, and future (Axis 2)", "Changing work, careers, skills, and ideas about future working life", "career interview"],
+      ["P3 · Journeys and migration (Axis 3)", "Travel, migration, belonging, and individual or collective journeys", "migration narrative"],
+      ["P4 · Language and media (Axis 4)", "Media messages, point of view, information, and how language shapes meaning", "media comparison"],
+      ["P5 · Forms of engagement (Axis 5)", "Participation, civic action, causes, and ways people create change", "evidence-based campaign"],
+      ["P6 · The United States (Axis 6)", "The United States' varied regions, communities, and cultural perspectives", "US regional feature"]
+    ])
   };
 })();

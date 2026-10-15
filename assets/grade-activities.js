@@ -520,13 +520,13 @@
       content.append(brief);
     }
 
-    if (currentGrade === "Grade 6" && currentSubject === "grammar") {
+    if (currentGrade === "Grade 6" && currentPeriod === 0 && currentSubject === "grammar") {
       const brief = document.createElement("section");
       brief.className = "lesson-brief";
       const heading = document.createElement("h3");
-      heading.textContent = "Learning period 2 · People, family, and possessions";
+      heading.textContent = "Learning period 1 · People and characters";
       const objective = document.createElement("p");
-      objective.textContent = "Grammar focus: use have and has to describe what people and their family members possess.";
+      objective.textContent = "Grammar focus: use have and has to describe a character's appearance, family, and possessions.";
       const task = document.createElement("p");
       task.className = "lesson-task";
       task.textContent = "Practise have with I/you/we/they; has with he/she/it; and questions and negatives with do/does.";

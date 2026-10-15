@@ -43,7 +43,7 @@
       gradeSummary.textContent = grade[1];
       const subjectLinks = document.createElement("div");
       subjectLinks.className = "learning-menu-grade-subjects";
-      const gradeSubjects = /^Grade [1-5]$/.test(grade[0]) ? curriculumSubjects : coreSubjects;
+      const gradeSubjects = /^Grade [1-9]$/.test(grade[0]) ? curriculumSubjects : coreSubjects;
       gradeSubjects.forEach(subject => {
         const link = document.createElement("a");
         link.href = `${pathPrefix}grade-activities.html?grade=${encodeURIComponent(grade[0])}#${subject[1]}`;
