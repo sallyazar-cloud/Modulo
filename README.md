@@ -1,6 +1,6 @@
 # Modulo
 
-Colorful, browser-based English worksheets organized into six subject areas for Grades 1–5 and four for the other grade levels.
+Colorful, browser-based English teacher's organizer. organized into six subject areas for Grades 1–5 and four for the other grade levels.
 
 ## Use it
 
