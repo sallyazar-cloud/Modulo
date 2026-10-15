@@ -32,9 +32,9 @@ let matchAudioContext = null;
 const feedbackTimeouts = new WeakMap();
 const matchLevelSeconds = { starter: 60, builder: 45, challenge: 30 };
 const matchLevelNames = {
-  starter: "Easy: The Curious Researcher",
-  builder: "Medium: The Keen Observer",
-  challenge: "Hard: The Language Guru"
+  starter: "Easy",
+  builder: "Medium",
+  challenge: "Hard"
 };
 const matchingTimer = window.createActivityTimer(
   document.querySelector("#matching-timer"),

@@ -30,10 +30,13 @@
     </section>
 
     <div class="toolbar">
-      <div class="level-picker" role="group" aria-label="Challenge level">
-        <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
-        <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
-        <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
+      <div class="level-picker-group">
+        <p class="level-picker-title">Choose an activity level</p>
+        <div class="level-picker" role="group" aria-label="Challenge level">
+          <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy</button>
+          <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium</button>
+          <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard</button>
+        </div>
       </div>
       <p class="timer-label" id="timer" aria-live="off">Time: 60 seconds</p>
     </div>

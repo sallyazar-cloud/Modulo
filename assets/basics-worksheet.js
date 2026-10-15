@@ -194,9 +194,9 @@ let currentQuestion = 0;
 let checked = false;
 const levelSeconds = { starter: 60, builder: 45, challenge: 30 };
 const levelNames = {
-  starter: "Easy: The Curious Researcher",
-  builder: "Medium: The Keen Observer",
-  challenge: "Hard: The Language Guru"
+  starter: "Easy",
+  builder: "Medium",
+  challenge: "Hard"
 };
 const submitButton = form.querySelector('[type="submit"]');
 const activityTimer = window.createActivityTimer(

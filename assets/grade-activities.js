@@ -1,8 +1,8 @@
 (function () {
   const levels = {
-    easy: { label: "Easy: The Curious Researcher", seconds: 60, index: 0 },
-    medium: { label: "Medium: The Keen Observer", seconds: 45, index: 1 },
-    hard: { label: "Hard: The Language Guru", seconds: 30, index: 2 }
+    easy: { label: "Easy", seconds: 60, index: 0 },
+    medium: { label: "Medium", seconds: 45, index: 1 },
+    hard: { label: "Hard", seconds: 30, index: 2 }
   };
 
   const grades = {

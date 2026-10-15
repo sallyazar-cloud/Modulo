@@ -37,9 +37,9 @@ button { color: inherit; }
 }
 
 .brand-photo {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
   border: 2px solid #fff;
   border-radius: 50%;
   object-fit: cover;
@@ -90,14 +90,12 @@ h1 span { color: #6549c7; }
 }
 
 .level-picker {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 5px;
-  border: 1px solid #e5e1f0;
-  border-radius: 16px;
-  background: white;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 620px);
 }
+.level-picker-title { margin: 0 0 8px; color: #4c35a2; font-weight: 800; }
 
 .level-button, .focus-button, .secondary-button, .primary-button, .nav-button {
   min-height: 44px;
@@ -107,8 +105,8 @@ h1 span { color: #6549c7; }
   font-weight: 700;
 }
 
-.level-button { padding: 9px 15px; background: transparent; }
-.level-button[aria-pressed="true"] { background: #eee9ff; color: #4c35a2; }
+.level-button { padding: 12px 15px; border: 1px solid #e5e1f0; background: white; }
+.level-button[aria-pressed="true"] { border-color: #6549c7; background: #eee9ff; color: #4c35a2; box-shadow: 0 3px 10px rgb(55 40 100 / 10%); }
 .focus-button, .secondary-button { padding: 10px 15px; border: 1px solid #e5e1f0; background: white; }
 .focus-button[aria-pressed="true"] { border-color: #087f78; background: #e1f7ef; color: #075f5a; }
 

@@ -70,9 +70,10 @@
     .quiz-item.is-correct select { border-color: #5ba779; background: #e8f8ed; }
     .quiz-item.is-incorrect select { border-color: #d4a51d; background: #fff2b8; }
     .quiz-item.is-correct, .quiz-item.is-incorrect { animation: answer-feedback 280ms ease-out; }
-    .quiz-level-picker { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; padding: 5px; border: 1px solid var(--line); border-radius: 14px; background: #fff; width: fit-content; }
-    .quiz-level-button { min-height: 42px; padding: 8px 13px; border: 0; border-radius: 10px; background: transparent; font-weight: 700; cursor: pointer; }
-    .quiz-level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .level-picker-title { margin: 14px 0 8px; color: var(--purple-dark); font-weight: 800; }
+    .quiz-level-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; width: min(100%, 620px); }
+    .quiz-level-button { min-height: 42px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-weight: 700; cursor: pointer; }
+    .quiz-level-button[aria-pressed="true"] { border-color: var(--purple); background: var(--lilac); color: var(--purple-dark); }
     .quiz-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-weight: 700; }
     .quiz-timer { color: var(--purple-dark); font-variant-numeric: tabular-nums; }
     .quiz-timer.is-low { color: #a33d35; }
@@ -88,10 +89,9 @@
     .fruit-game h2 { margin-bottom: 4px; font-size: 1.35rem; }
     .fruit-game-intro { margin-bottom: 16px; color: var(--muted); }
     .game-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 15px; }
-    .difficulty-picker { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-    .difficulty-button, .game-reset { min-height: 42px; padding: 8px 13px; border: 0; border-radius: 10px; font-weight: 700; cursor: pointer; }
-    .difficulty-button { background: transparent; }
-    .difficulty-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .difficulty-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(100%, 620px); }
+    .difficulty-button, .game-reset { min-height: 42px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-weight: 700; cursor: pointer; }
+    .difficulty-button[aria-pressed="true"] { border-color: var(--purple); background: var(--lilac); color: var(--purple-dark); }
     .game-reset { border: 1px solid var(--line); background: white; }
     .game-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 13px; font-weight: 700; }
     .game-timer { color: var(--purple-dark); font-variant-numeric: tabular-nums; }
@@ -182,18 +182,21 @@
 
     <section class="fruit-game" id="fruit-game" aria-labelledby="fruit-game-title">
       <h2 id="fruit-game-title">Fruit picture card game</h2>
-      <p class="fruit-game-intro">Match each fruit picture to its name. Drag a picture onto a name, or tap a picture and then its name. Easy: The Curious Researcher has 4 fruits and 60 seconds. Medium: The Keen Observer has 6 fruits and 45 seconds. Hard: The Language Guru has 8 fruits and 30 seconds. The timer starts with your first move.</p>
+      <p class="fruit-game-intro">Match each fruit picture to its name. Drag a picture onto a name, or tap a picture and then its name. Easy has 4 fruits and 60 seconds; Medium has 6 fruits and 45 seconds; Hard has 8 fruits and 30 seconds. The timer starts with your first move.</p>
       <div class="game-toolbar">
-        <div class="difficulty-picker" role="group" aria-label="Choose game difficulty">
-          <button class="difficulty-button" type="button" data-difficulty="easy" aria-pressed="true">Easy: The Curious Researcher</button>
-          <button class="difficulty-button" type="button" data-difficulty="medium" aria-pressed="false">Medium: The Keen Observer</button>
-          <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">Hard: The Language Guru</button>
+        <div class="difficulty-picker-group">
+          <p class="level-picker-title">Choose an activity level</p>
+          <div class="difficulty-picker" role="group" aria-label="Choose game difficulty">
+            <button class="difficulty-button" type="button" data-difficulty="easy" aria-pressed="true">Easy</button>
+            <button class="difficulty-button" type="button" data-difficulty="medium" aria-pressed="false">Medium</button>
+            <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">Hard</button>
+          </div>
         </div>
         <button class="game-reset" id="fruit-game-reset" type="button">Restart game</button>
       </div>
       <div class="game-stats">
         <span class="game-timer" id="fruit-game-timer" role="timer" aria-live="off">Time: 60 seconds</span>
-        <span class="game-score" id="fruit-game-level">Easy: The Curious Researcher</span>
+        <span class="game-score" id="fruit-game-level">Easy</span>
         <span class="game-score" id="fruit-game-score" aria-live="polite">0 of 4 pairs</span>
       </div>
       <p class="game-status" id="fruit-game-status" aria-live="polite">Choose a fruit picture to begin.</p>
@@ -213,10 +216,11 @@
       <h2 id="quiz-title">Story detective: what do you remember?</h2>
       <p>Choose a difficulty, then answer before time runs out. You can turn back to the story whenever you like.</p>
       <form id="story-quiz">
+        <p class="level-picker-title">Choose a quiz level</p>
         <div class="quiz-level-picker" role="group" aria-label="Choose quiz difficulty">
-          <button class="quiz-level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
-          <button class="quiz-level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
-          <button class="quiz-level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
+          <button class="quiz-level-button" type="button" data-level="easy" aria-pressed="true">Easy</button>
+          <button class="quiz-level-button" type="button" data-level="medium" aria-pressed="false">Medium</button>
+          <button class="quiz-level-button" type="button" data-level="hard" aria-pressed="false">Hard</button>
         </div>
         <div class="quiz-meta">
           <span class="quiz-timer" id="quiz-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
@@ -246,9 +250,9 @@
       hard: { seconds: 30, fruits: ["apple", "banana", "grapes", "orange", "strawberry", "pear", "watermelon", "lemon"] }
     };
     const levelTitles = {
-      easy: "Easy: The Curious Researcher",
-      medium: "Medium: The Keen Observer",
-      hard: "Hard: The Language Guru"
+      easy: "Easy",
+      medium: "Medium",
+      hard: "Hard"
     };
     const fruitPictures = {
       apple: "🍎",

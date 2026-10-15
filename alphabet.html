@@ -59,7 +59,7 @@
       letter-spacing: .02em;
       text-decoration: none;
     }
-    .brand-photo { width: 46px; height: 46px; flex: 0 0 46px; border: 2px solid var(--paper); border-radius: 50%; object-fit: cover; object-position: center; box-shadow: 0 2px 8px rgb(55 40 100 / 16%); }
+    .brand-photo { width: 64px; height: 64px; flex: 0 0 64px; border: 2px solid var(--paper); border-radius: 50%; object-fit: cover; object-position: center; box-shadow: 0 2px 8px rgb(55 40 100 / 16%); }
     .site-nav { display: flex; flex-wrap: wrap; gap: 6px; }
     .site-nav a {
       padding: 8px 12px;
@@ -99,14 +99,12 @@
       margin-bottom: 18px;
     }
     .level-picker {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 5px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--paper);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      width: min(100%, 620px);
     }
+    .level-picker-title { margin: 0 0 8px; color: var(--purple-dark); font-weight: 800; }
     .level-button, .focus-button, .secondary-button, .primary-button, .nav-button {
       min-height: 44px;
       border: 0;
@@ -114,8 +112,8 @@
       cursor: pointer;
       font-weight: 800;
     }
-    .level-button { padding: 9px 15px; background: transparent; }
-    .level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .level-button { padding: 12px 15px; border: 1px solid var(--line); background: var(--paper); }
+    .level-button[aria-pressed="true"] { border-color: var(--purple); background: var(--lilac); color: var(--purple-dark); box-shadow: 0 3px 10px rgb(55 40 100 / 10%); }
     .focus-button, .secondary-button {
       padding: 10px 15px;
       border: 1px solid var(--line);
@@ -262,10 +260,11 @@
     </section>
 
     <section class="toolbar" aria-label="Worksheet options">
+      <p class="level-picker-title">Choose an activity level</p>
       <div class="level-picker" role="group" aria-label="Choose a difficulty level">
-        <button class="level-button" type="button" data-level="starter" aria-pressed="true">Easy: The Curious Researcher</button>
-        <button class="level-button" type="button" data-level="builder" aria-pressed="false">Medium: The Keen Observer</button>
-        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">Hard: The Language Guru</button>
+        <button class="level-button" type="button" data-level="starter" aria-pressed="true">Easy</button>
+        <button class="level-button" type="button" data-level="builder" aria-pressed="false">Medium</button>
+        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">Hard</button>
       </div>
       <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
     </section>
@@ -278,7 +277,7 @@
 
     <section class="matching-activity" id="matching-zone" aria-labelledby="matching-title">
       <h2 id="matching-title">Letter match: drag, drop, or tap</h2>
-      <p class="matching-level" id="matching-level">Easy: The Curious Researcher</p>
+      <p class="matching-level" id="matching-level">Easy</p>
       <p class="matching-intro">Drag a lowercase letter to its capital, or select a letter and then tap a clue.</p>
       <p class="matching-label" id="word-bank-label">Lowercase letters</p>
       <div class="matching-words" id="matching-words" aria-labelledby="word-bank-label"></div>

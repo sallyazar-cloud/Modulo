@@ -118,15 +118,8 @@
       gap: 14px;
       margin-bottom: 18px;
     }
-    .level-picker {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      padding: 5px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--paper);
-    }
+    .level-picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: min(100%, 620px); }
+    .level-picker-title { margin: 0 0 8px; color: var(--purple-dark); font-weight: 800; }
     .level-button, .focus-button, .secondary-button, .primary-button, .nav-button {
       min-height: 44px;
       border: 0;
@@ -134,8 +127,8 @@
       cursor: pointer;
       font-weight: 800;
     }
-    .level-button { padding: 9px 15px; background: transparent; }
-    .level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .level-button { padding: 12px 15px; border: 1px solid var(--line); background: var(--paper); }
+    .level-button[aria-pressed="true"] { border-color: var(--purple); background: var(--lilac); color: var(--purple-dark); box-shadow: 0 3px 10px rgb(55 40 100 / 10%); }
     .timer-label { color: var(--purple-dark); font-weight: 800; font-variant-numeric: tabular-nums; }
     .timer-label.is-low { color: #a33d35; }
     .focus-button, .secondary-button {
@@ -319,10 +312,13 @@
     </section>
 
     <section class="toolbar" aria-label="Worksheet options">
-      <div class="level-picker" role="group" aria-label="Choose a difficulty level">
-        <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
-        <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
-        <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The Language Guru</button>
+      <div class="level-picker-group">
+        <p class="level-picker-title">Choose an activity level</p>
+        <div class="level-picker" role="group" aria-label="Choose a difficulty level">
+          <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy</button>
+          <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium</button>
+          <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard</button>
+        </div>
       </div>
       <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
     </section>
@@ -487,13 +483,13 @@
       });
 
       document.querySelector("#activity-title").textContent =
-        `Questions · ${currentLevel === "easy" ? "Easy: The Curious Researcher"
-          : currentLevel === "medium" ? "Medium: The Keen Observer"
-          : "Hard: The Language Guru"}`;
+        `Questions · ${currentLevel === "easy" ? "Easy"
+          : currentLevel === "medium" ? "Medium"
+          : "Hard"}`;
       document.querySelector("#level-label").textContent =
-        currentLevel === "easy" ? "Easy: The Curious Researcher"
-          : currentLevel === "medium" ? "Medium: The Keen Observer"
-          : "Hard: The Language Guru";
+        currentLevel === "easy" ? "Easy"
+          : currentLevel === "medium" ? "Medium"
+          : "Hard";
       document.querySelector("#level-description").textContent =
         currentLevel === "easy" ? "Try a small set of have and has questions. You have 60 seconds."
           : currentLevel === "medium" ? "Practise negatives and questions. You have 45 seconds."
