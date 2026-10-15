@@ -63,15 +63,88 @@
     .quiz-item { display: grid; gap: 6px; }
     .quiz-item label { font-weight: 700; }
     .quiz-item select { width: min(100%, 440px); min-height: 46px; padding: 9px 12px; border: 2px solid #dcd7e9; border-radius: 11px; background: white; }
+    .quiz-feedback { min-height: 1.4em; margin: 0; color: var(--muted); font-size: .92rem; font-weight: 700; }
+    .quiz-item.is-correct .quiz-feedback { color: #176b48; }
+    .quiz-item.is-incorrect .quiz-feedback { color: #8b3e20; }
+    .quiz-item.is-correct select { border-color: #5ba779; background: #e8f8ed; }
+    .quiz-item.is-incorrect select { border-color: #d4a51d; background: #fff2b8; }
+    .quiz-item.is-correct, .quiz-item.is-incorrect { animation: answer-feedback 280ms ease-out; }
+    .quiz-level-picker { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; padding: 5px; border: 1px solid var(--line); border-radius: 14px; background: #fff; width: fit-content; }
+    .quiz-level-button { min-height: 42px; padding: 8px 13px; border: 0; border-radius: 10px; background: transparent; font-weight: 700; cursor: pointer; }
+    .quiz-level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .quiz-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-weight: 700; }
+    .quiz-timer { color: var(--purple-dark); font-variant-numeric: tabular-nums; }
+    .quiz-timer.is-low { color: #a33d35; }
     .quiz-result { min-height: 1.6em; margin: 12px 0 0; color: var(--purple-dark); font-weight: 700; }
+    .quiz-result.is-correct { color: #176b48; }
+    .quiz-result.is-incorrect { color: #8b3e20; }
+    .quiz-button:disabled { cursor: not-allowed; opacity: .55; }
+    @keyframes answer-feedback {
+      0% { transform: translateY(3px); opacity: .55; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    .fruit-game { margin-bottom: 20px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 24px; background: var(--paper); box-shadow: 0 14px 40px rgb(55 40 100 / 9%); }
+    .fruit-game h2 { margin-bottom: 4px; font-size: 1.35rem; }
+    .fruit-game-intro { margin-bottom: 16px; color: var(--muted); }
+    .game-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 15px; }
+    .difficulty-picker { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+    .difficulty-button, .game-reset { min-height: 42px; padding: 8px 13px; border: 0; border-radius: 10px; font-weight: 700; cursor: pointer; }
+    .difficulty-button { background: transparent; }
+    .difficulty-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .game-reset { border: 1px solid var(--line); background: white; }
+    .game-stats { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 13px; font-weight: 700; }
+    .game-timer { color: var(--purple-dark); font-variant-numeric: tabular-nums; }
+    .game-timer.is-low { color: #a33d35; }
+    .game-score { color: var(--muted); }
+    .game-status { min-height: 1.6em; margin: 0 0 14px; color: var(--purple-dark); font-weight: 700; }
+    .fruit-game-boards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .fruit-game-boards h3 { margin-bottom: 8px; font-size: 1rem; }
+    .fruit-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 115px), 1fr)); gap: 9px; }
+    .fruit-card {
+      display: grid;
+      min-height: 90px;
+      place-items: center;
+      align-content: center;
+      gap: 3px;
+      padding: 9px;
+      border: 2px solid #dcd7e9;
+      border-radius: 15px;
+      background: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease, transform 150ms ease;
+    }
+    .fruit-picture { font-size: 2.45rem; line-height: 1.15; }
+    .fruit-card[data-card-type="picture"] { cursor: grab; }
+    .fruit-card[aria-pressed="true"] { border-color: var(--purple); background: var(--lilac); }
+    .fruit-card.is-drag-over { border-color: var(--teal); background: var(--mint); }
+    .fruit-card.is-correct { border-color: #5ba779; background: #e8f8ed; animation: fruit-correct 420ms ease-out; }
+    .fruit-card.is-wrong { border-color: #d4a51d; background: #fff2b8; animation: fruit-wrong 360ms ease-in-out; }
+    .fruit-card:disabled { cursor: default; }
+    .fruit-game.is-finished .fruit-card:not(.is-correct) { cursor: default; opacity: .65; }
+    @keyframes fruit-correct {
+      45% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fruit-wrong {
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-3px); }
+    }
     footer { padding: 18px 0 28px; color: var(--muted); font-size: .9rem; text-align: center; }
     @media (max-width: 620px) {
       .shell { width: min(100% - 22px, 880px); }
       main { padding-top: 15px; }
-      .story-page, .quiz { padding-inline: 16px; }
+      .story-page, .quiz, .fruit-game { padding-inline: 16px; }
       .story-controls { padding-inline: 16px; }
       .story-art { min-height: 190px; }
       .page-count { width: 100%; order: 1; }
+      .fruit-game-boards { grid-template-columns: 1fr; gap: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fruit-card { transition: none; }
+      .fruit-card.is-correct, .fruit-card.is-wrong { animation: none; }
+      .quiz-item.is-correct, .quiz-item.is-incorrect { animation: none; }
     }
   </style>
 </head>
@@ -95,7 +168,7 @@
     <p class="intro">Meet a basket full of fruit with a curious plan. Read one short page at a time, then see what you remember.</p>
 
     <article class="storybook" aria-labelledby="story-page-title">
-      <img class="story-art" src="../assets/fruit-basket.svg" alt="A smiling red apple, yellow banana, purple grapes, and orange sitting in a basket." width="640" height="360">
+      <img class="story-art" src="../assets/fruit-basket.jfif" alt="The fruit basket illustration." width="1408" height="768">
       <div class="story-page" aria-live="polite">
         <h2 id="story-page-title">Page 1: A very quiet basket</h2>
         <p id="story-page-text">On Monday morning, Mina found a basket beside her door. A shiny red apple, a yellow banana, purple grapes, and a little orange sat inside. “Good morning,” said the apple. Mina blinked. Fruit did not usually say good morning.</p>
@@ -107,56 +180,354 @@
       </div>
     </article>
 
+    <section class="fruit-game" id="fruit-game" aria-labelledby="fruit-game-title">
+      <h2 id="fruit-game-title">Fruit picture card game</h2>
+      <p class="fruit-game-intro">Match each fruit picture to its name. Drag a picture onto a name, or tap a picture and then its name. Easy: The Curious Researcher has 4 fruits and 60 seconds. Medium: The Keen Observer has 6 fruits and 45 seconds. Hard: The language guru has 8 fruits and 30 seconds. The timer starts with your first move.</p>
+      <div class="game-toolbar">
+        <div class="difficulty-picker" role="group" aria-label="Choose game difficulty">
+          <button class="difficulty-button" type="button" data-difficulty="easy" aria-pressed="true">Easy: The Curious Researcher</button>
+          <button class="difficulty-button" type="button" data-difficulty="medium" aria-pressed="false">Medium: The Keen Observer</button>
+          <button class="difficulty-button" type="button" data-difficulty="hard" aria-pressed="false">Hard: The language guru</button>
+        </div>
+        <button class="game-reset" id="fruit-game-reset" type="button">Restart game</button>
+      </div>
+      <div class="game-stats">
+        <span class="game-timer" id="fruit-game-timer" role="timer" aria-live="off">Time: 60 seconds</span>
+        <span class="game-score" id="fruit-game-level">Easy: The Curious Researcher</span>
+        <span class="game-score" id="fruit-game-score" aria-live="polite">0 of 4 pairs</span>
+      </div>
+      <p class="game-status" id="fruit-game-status" aria-live="polite">Choose a fruit picture to begin.</p>
+      <div class="fruit-game-boards">
+        <section aria-labelledby="fruit-pictures-title">
+          <h3 id="fruit-pictures-title">Fruit pictures</h3>
+          <div class="fruit-card-grid" id="fruit-picture-cards"></div>
+        </section>
+        <section aria-labelledby="fruit-names-title">
+          <h3 id="fruit-names-title">Fruit names</h3>
+          <div class="fruit-card-grid" id="fruit-name-cards"></div>
+        </section>
+      </div>
+    </section>
+
     <section class="quiz" aria-labelledby="quiz-title">
       <h2 id="quiz-title">Story detective: what do you remember?</h2>
-      <p>Pick an answer for each question. You can turn back to the story whenever you like.</p>
+      <p>Choose a difficulty, then answer before time runs out. You can turn back to the story whenever you like.</p>
       <form id="story-quiz">
-        <div class="quiz-list">
-          <div class="quiz-item">
-            <label for="fruit-answer-1">1. Where did Mina find the basket?</label>
-            <select id="fruit-answer-1" name="answer-1">
-              <option value="">Choose an answer</option><option value="door">Beside her door</option><option value="river">Beside a river</option><option value="school">At school</option>
-            </select>
-          </div>
-          <div class="quiz-item">
-            <label for="fruit-answer-2">2. Which fruit spoke first?</label>
-            <select id="fruit-answer-2" name="answer-2">
-              <option value="">Choose an answer</option><option value="apple">The apple</option><option value="banana">The banana</option><option value="grape">A grape</option>
-            </select>
-          </div>
-          <div class="quiz-item">
-            <label for="fruit-answer-3">3. What did the banana want to be?</label>
-            <select id="fruit-answer-3" name="answer-3">
-              <option value="">Choose an answer</option><option value="hat">A hat</option><option value="boat">A boat</option><option value="phone">A phone</option>
-            </select>
-          </div>
-          <div class="quiz-item">
-            <label for="fruit-answer-4">4. What did the grapes do when it rained?</label>
-            <select id="fruit-answer-4" name="answer-4">
-              <option value="">Choose an answer</option><option value="umbrella">They made a grape umbrella</option><option value="dance">They danced in the rain</option><option value="hide">They hid in a shoe</option>
-            </select>
-          </div>
-          <div class="quiz-item">
-            <label for="fruit-answer-5">5. What did Mina share with the fruit?</label>
-            <select id="fruit-answer-5" name="answer-5">
-              <option value="">Choose an answer</option><option value="picnic">A picnic</option><option value="puzzle">A puzzle</option><option value="song">A song</option>
-            </select>
-          </div>
+        <div class="quiz-level-picker" role="group" aria-label="Choose quiz difficulty">
+          <button class="quiz-level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
+          <button class="quiz-level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
+          <button class="quiz-level-button" type="button" data-level="hard" aria-pressed="false">Hard: The language guru</button>
         </div>
-        <button class="quiz-button" type="submit">Check my answers</button>
+        <div class="quiz-meta">
+          <span class="quiz-timer" id="quiz-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
+          <span id="quiz-level-note">Easy: 3 questions, 60 seconds.</span>
+        </div>
+        <div class="quiz-list" id="quiz-questions"></div>
+        <button class="quiz-button" id="quiz-submit" type="submit">Check my answers</button>
+        <button class="game-reset" id="quiz-reset" type="button">Try again</button>
         <p class="quiz-result" id="quiz-result" aria-live="polite">Ready when you are!</p>
       </form>
     </section>
   </main>
   <footer class="shell">Read at your own pace. Every good detective takes their time.</footer>
 
+  <script src="../assets/activity-timer.js"></script>
   <script>
     const storyPages = [
       { title: "Page 1: A very quiet basket", text: "On Monday morning, Mina found a basket beside her door. A shiny red apple, a yellow banana, purple grapes, and a little orange sat inside. “Good morning,” said the apple. Mina blinked. Fruit did not usually say good morning." },
       { title: "Page 2: The banana's big idea", text: "“We are going on an adventure!” announced the banana. “I will be the boat.” It curled itself into a tiny yellow canoe. The orange climbed aboard, but the apple was too round and rolled straight into Mina's slipper. “A splendid captain's hat!” called the banana." },
       { title: "Page 3: A grape umbrella", text: "Outside, a little rain began to fall. The grapes huddled together and opened their leaves like a small purple umbrella. Mina and the fruit squeezed underneath. One grape wore a raindrop like a shiny hat. “It is a very wet hat,” it giggled." },
-      { title: "Page 4: The best picnic", text: "The sun came out, so Mina spread a blanket. They shared a picnic and told jokes. The banana's favorite joke was, “Why did the orange stop? It ran out of juice!” Everyone laughed, even the apple in the slipper. The basket was quiet again on Tuesday—but Mina still says good morning, just in case." }
+      { title: "Page 4: The best picnic", text: "The sun came out, so Mina spread a blanket. They shared a picnic and told jokes. The banana's favorite joke was, “Why did the orange stop? It ran out of juice!” Everyone laughed, even the apple in the slipper. The basket was quiet again on Tuesday. Mina still says good morning, just in case." }
     ];
+    const fruitLevels = {
+      easy: { seconds: 60, fruits: ["apple", "banana", "grapes", "orange"] },
+      medium: { seconds: 45, fruits: ["apple", "banana", "grapes", "orange", "strawberry", "pear"] },
+      hard: { seconds: 30, fruits: ["apple", "banana", "grapes", "orange", "strawberry", "pear", "watermelon", "lemon"] }
+    };
+    const levelTitles = {
+      easy: "Easy: The Curious Researcher",
+      medium: "Medium: The Keen Observer",
+      hard: "Hard: The language guru"
+    };
+    const fruitPictures = {
+      apple: "🍎",
+      banana: "🍌",
+      grapes: "🍇",
+      orange: "🍊",
+      strawberry: "🍓",
+      pear: "🍐",
+      watermelon: "🍉",
+      lemon: "🍋"
+    };
+    const comprehensionLevels = {
+      easy: {
+        seconds: 60,
+        questions: [
+          { prompt: "Where did Mina find the basket?", answer: "door", choices: [["door", "Beside her door"], ["river", "Beside a river"], ["school", "At school"]] },
+          { prompt: "Which fruit spoke first?", answer: "apple", choices: [["apple", "The apple"], ["banana", "The banana"], ["grape", "A grape"]] },
+          { prompt: "What did the banana want to be?", answer: "boat", choices: [["hat", "A hat"], ["boat", "A boat"], ["phone", "A phone"]] }
+        ]
+      },
+      medium: {
+        seconds: 45,
+        questions: [
+          { prompt: "Where did Mina find the basket?", answer: "door", choices: [["door", "Beside her door"], ["river", "Beside a river"], ["school", "At school"]] },
+          { prompt: "Which fruit spoke first?", answer: "apple", choices: [["apple", "The apple"], ["banana", "The banana"], ["grape", "A grape"]] },
+          { prompt: "What did the banana want to be?", answer: "boat", choices: [["hat", "A hat"], ["boat", "A boat"], ["phone", "A phone"]] },
+          { prompt: "What did the grapes do when it rained?", answer: "umbrella", choices: [["umbrella", "They made a grape umbrella"], ["dance", "They danced in the rain"], ["hide", "They hid in a shoe"]] }
+        ]
+      },
+      hard: {
+        seconds: 30,
+        questions: [
+          { prompt: "Where did Mina find the basket?", answer: "door", choices: [["door", "Beside her door"], ["river", "Beside a river"], ["school", "At school"]] },
+          { prompt: "Which fruit spoke first?", answer: "apple", choices: [["apple", "The apple"], ["banana", "The banana"], ["grape", "A grape"]] },
+          { prompt: "What did the banana want to be?", answer: "boat", choices: [["hat", "A hat"], ["boat", "A boat"], ["phone", "A phone"]] },
+          { prompt: "What did the grapes do when it rained?", answer: "umbrella", choices: [["umbrella", "They made a grape umbrella"], ["dance", "They danced in the rain"], ["hide", "They hid in a shoe"]] },
+          { prompt: "What did Mina share with the fruit?", answer: "picnic", choices: [["picnic", "A picnic"], ["puzzle", "A puzzle"], ["song", "A song"]] }
+        ]
+      }
+    };
+    let currentQuizLevel = "easy";
+    const quizForm = document.querySelector("#story-quiz");
+    const quizQuestions = document.querySelector("#quiz-questions");
+    const quizResult = document.querySelector("#quiz-result");
+    const quizSubmit = document.querySelector("#quiz-submit");
+    const quizTimer = window.createActivityTimer(
+      document.querySelector("#quiz-timer"),
+      () => {
+        quizQuestions.querySelectorAll("select").forEach(control => { control.disabled = true; });
+        quizSubmit.disabled = true;
+        quizResult.classList.remove("is-correct");
+        quizResult.classList.add("is-incorrect");
+        quizResult.textContent = "Time is up! Choose this level again or press Try again to start over.";
+      }
+    );
+
+    function renderComprehensionQuiz(level = currentQuizLevel) {
+      currentQuizLevel = level;
+      quizQuestions.replaceChildren();
+      quizSubmit.disabled = false;
+      quizResult.classList.remove("is-correct", "is-incorrect");
+      quizResult.textContent = "Ready when you are!";
+      document.querySelectorAll(".quiz-level-button").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.level === level));
+      });
+
+      const { questions, seconds } = comprehensionLevels[level];
+      quizTimer.reset(seconds);
+      document.querySelector("#quiz-level-note").textContent =
+        `${levelTitles[level]} · ${questions.length} questions · ${seconds} seconds`;
+
+      questions.forEach((question, index) => {
+        const item = document.createElement("div");
+        item.className = "quiz-item";
+        const label = document.createElement("label");
+        label.htmlFor = `fruit-answer-${index + 1}`;
+        label.textContent = `${index + 1}. ${question.prompt}`;
+        const select = document.createElement("select");
+        select.id = label.htmlFor;
+        select.name = `answer-${index + 1}`;
+        select.setAttribute("aria-label", label.textContent);
+        const placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "Choose an answer";
+        select.append(placeholder);
+        question.choices.forEach(([value, text]) => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = text;
+          select.append(option);
+        });
+        select.addEventListener("change", () => quizTimer.start());
+        const feedback = document.createElement("p");
+        feedback.className = "quiz-feedback";
+        feedback.id = `fruit-feedback-${index + 1}`;
+        feedback.setAttribute("aria-live", "polite");
+        select.setAttribute("aria-describedby", feedback.id);
+        item.append(label, select, feedback);
+        quizQuestions.append(item);
+      });
+    }
+
+    document.querySelectorAll(".quiz-level-button").forEach(button => {
+      button.addEventListener("click", () => renderComprehensionQuiz(button.dataset.level));
+    });
+    document.querySelector("#quiz-reset").addEventListener("click", () => renderComprehensionQuiz());
+    renderComprehensionQuiz();
+    const fruitGame = document.querySelector("#fruit-game");
+    const pictureCards = document.querySelector("#fruit-picture-cards");
+    const nameCards = document.querySelector("#fruit-name-cards");
+    const gameTimer = document.querySelector("#fruit-game-timer");
+    const gameLevel = document.querySelector("#fruit-game-level");
+    const gameScore = document.querySelector("#fruit-game-score");
+    const gameStatus = document.querySelector("#fruit-game-status");
+    const difficultyButtons = [...document.querySelectorAll(".difficulty-button")];
+    let currentDifficulty = "easy";
+    let secondsRemaining = fruitLevels.easy.seconds;
+    let matchedFruits = 0;
+    let selectedFruit = null;
+    let gameStarted = false;
+    let gameFinished = false;
+    let timerInterval = null;
+    const fruitFeedbackTimeouts = new WeakMap();
+
+    function shuffleFruits(fruits) {
+      return [...fruits].sort(() => Math.random() - 0.5);
+    }
+
+    function updateGameTimer() {
+      gameTimer.textContent = `Time: ${secondsRemaining} second${secondsRemaining === 1 ? "" : "s"}`;
+      gameTimer.classList.toggle("is-low", secondsRemaining <= 10);
+    }
+
+    function finishFruitGame(won) {
+      gameFinished = true;
+      clearInterval(timerInterval);
+      fruitGame.classList.add("is-finished");
+      pictureCards.querySelectorAll(".fruit-card").forEach(card => { card.disabled = true; });
+      nameCards.querySelectorAll(".fruit-card").forEach(card => { card.disabled = true; });
+      gameStatus.textContent = won
+        ? `Amazing! You matched all ${matchedFruits} fruits in time!`
+        : `Time is up! You matched ${matchedFruits} of ${fruitLevels[currentDifficulty].fruits.length}. Choose a level or restart to try again.`;
+    }
+
+    function startFruitTimer() {
+      if (gameStarted || gameFinished) return;
+      gameStarted = true;
+      timerInterval = setInterval(() => {
+        secondsRemaining -= 1;
+        updateGameTimer();
+        if (secondsRemaining <= 0) finishFruitGame(false);
+      }, 1000);
+    }
+
+    function showWrongFruitFeedback(picture, name) {
+      [picture, name].forEach(card => {
+        clearTimeout(fruitFeedbackTimeouts.get(card));
+        card.classList.remove("is-wrong");
+        void card.offsetWidth;
+        card.classList.add("is-wrong");
+        fruitFeedbackTimeouts.set(card, setTimeout(() => {
+          card.classList.remove("is-wrong");
+          fruitFeedbackTimeouts.delete(card);
+        }, 450));
+      });
+    }
+
+    function matchFruit(fruit, nameCard) {
+      if (gameFinished || nameCard.disabled) return;
+      startFruitTimer();
+      const pictureCard = [...pictureCards.querySelectorAll(".fruit-card")].find(card => card.dataset.fruit === fruit);
+      if (fruit !== nameCard.dataset.fruit) {
+        showWrongFruitFeedback(pictureCard, nameCard);
+        gameStatus.textContent = "Not quite. Try matching that picture with another name!";
+        return;
+      }
+
+      [pictureCard, nameCard].forEach(card => {
+        clearTimeout(fruitFeedbackTimeouts.get(card));
+        fruitFeedbackTimeouts.delete(card);
+        card.classList.remove("is-wrong");
+      });
+      pictureCard.disabled = true;
+      nameCard.disabled = true;
+      pictureCard.classList.add("is-correct");
+      nameCard.classList.add("is-correct");
+      pictureCard.setAttribute("aria-pressed", "false");
+      selectedFruit = null;
+      matchedFruits += 1;
+      gameScore.textContent = `${matchedFruits} of ${fruitLevels[currentDifficulty].fruits.length} pairs`;
+      gameStatus.textContent = `That's right! You matched ${fruit}.`;
+      if (matchedFruits === fruitLevels[currentDifficulty].fruits.length) finishFruitGame(true);
+    }
+
+    function renderFruitGame(difficulty = currentDifficulty) {
+      currentDifficulty = difficulty;
+      const { fruits, seconds } = fruitLevels[difficulty];
+      clearInterval(timerInterval);
+      selectedFruit = null;
+      gameStarted = false;
+      gameFinished = false;
+      matchedFruits = 0;
+      secondsRemaining = seconds;
+      fruitGame.classList.remove("is-finished");
+      gameScore.textContent = `0 of ${fruits.length} pairs`;
+      gameStatus.textContent = "Choose a fruit picture to begin.";
+      updateGameTimer();
+      gameLevel.textContent = levelTitles[difficulty];
+      difficultyButtons.forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.difficulty === difficulty));
+      });
+      pictureCards.replaceChildren();
+      nameCards.replaceChildren();
+
+      shuffleFruits(fruits).forEach(fruit => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "fruit-card";
+        card.draggable = true;
+        card.dataset.cardType = "picture";
+        card.dataset.fruit = fruit;
+        card.setAttribute("aria-label", `${fruit} picture`);
+        card.setAttribute("aria-pressed", "false");
+        const picture = document.createElement("span");
+        picture.className = "fruit-picture";
+        picture.setAttribute("aria-hidden", "true");
+        picture.textContent = fruitPictures[fruit];
+        card.append(picture);
+        card.addEventListener("click", () => {
+          if (gameFinished || card.disabled) return;
+          startFruitTimer();
+          pictureCards.querySelectorAll(".fruit-card").forEach(item => {
+            item.setAttribute("aria-pressed", String(item === card));
+          });
+          selectedFruit = fruit;
+          gameStatus.textContent = `${fruit} picture selected. Choose its name.`;
+        });
+        card.addEventListener("dragstart", event => {
+          if (gameFinished || !event.dataTransfer) return;
+          startFruitTimer();
+          event.dataTransfer.setData("text/plain", fruit);
+          event.dataTransfer.effectAllowed = "move";
+        });
+        pictureCards.append(card);
+      });
+
+      shuffleFruits(fruits).forEach(fruit => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "fruit-card";
+        card.dataset.cardType = "name";
+        card.dataset.fruit = fruit;
+        card.textContent = fruit[0].toUpperCase() + fruit.slice(1);
+        card.addEventListener("click", () => {
+          if (selectedFruit) matchFruit(selectedFruit, card);
+          else gameStatus.textContent = "Choose a fruit picture first.";
+        });
+        card.addEventListener("dragover", event => {
+          if (gameFinished || card.disabled) return;
+          event.preventDefault();
+          if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+          card.classList.add("is-drag-over");
+        });
+        card.addEventListener("dragleave", () => card.classList.remove("is-drag-over"));
+        card.addEventListener("drop", event => {
+          event.preventDefault();
+          card.classList.remove("is-drag-over");
+          const fruitPicture = event.dataTransfer?.getData("text/plain");
+          if (fruitPicture) matchFruit(fruitPicture, card);
+        });
+        nameCards.append(card);
+      });
+    }
+
+    difficultyButtons.forEach(button => {
+      button.addEventListener("click", () => renderFruitGame(button.dataset.difficulty));
+    });
+    document.querySelector("#fruit-game-reset").addEventListener("click", () => renderFruitGame());
+    renderFruitGame();
+
     let currentPage = 0;
     const previousButton = document.querySelector("#previous-page");
     const nextButton = document.querySelector("#next-page");
@@ -173,17 +544,28 @@
     nextButton.addEventListener("click", () => {
       if (currentPage < storyPages.length - 1) { currentPage += 1; showStoryPage(); }
     });
-    document.querySelector("#story-quiz").addEventListener("submit", event => {
+    quizForm.addEventListener("submit", event => {
       event.preventDefault();
-      const answers = ["door", "apple", "boat", "umbrella", "picnic"];
+      if (quizTimer.expired) return;
+      quizTimer.stop();
+      const questions = comprehensionLevels[currentQuizLevel].questions;
+      const controls = [...quizQuestions.querySelectorAll("select")];
       let score = 0;
-      answers.forEach((answer, index) => {
-        const control = document.querySelector(`#fruit-answer-${index + 1}`);
-        if (control.value === answer) score += 1;
+      controls.forEach((control, index) => {
+        const isCorrect = control.value === questions[index].answer;
+        control.parentElement.classList.toggle("is-correct", isCorrect);
+        control.parentElement.classList.toggle("is-incorrect", !isCorrect);
+        control.parentElement.querySelector(".quiz-feedback").textContent = isCorrect
+          ? "That's right! Nice work."
+          : `Good try! The answer is “${questions[index].choices.find(([value]) => value === questions[index].answer)[1]}”.`;
+        if (isCorrect) score += 1;
       });
-      document.querySelector("#quiz-result").textContent = score === answers.length
-        ? `Amazing — ${score} out of ${answers.length}!`
-        : `You got ${score} out of ${answers.length}. Revisit the story and try again!`;
+      quizResult.classList.remove("is-correct", "is-incorrect");
+      quizResult.classList.add(score === questions.length ? "is-correct" : "is-incorrect");
+      quizResult.textContent = score === questions.length
+        ? `Amazing! ${score} out of ${questions.length}!`
+        : `You got ${score} out of ${questions.length}. Revisit the story and try again!`;
+      quizSubmit.disabled = false;
     });
   </script>
 </body>

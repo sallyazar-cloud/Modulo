@@ -136,6 +136,8 @@
     }
     .level-button { padding: 9px 15px; background: transparent; }
     .level-button[aria-pressed="true"] { background: var(--lilac); color: var(--purple-dark); }
+    .timer-label { color: var(--purple-dark); font-weight: 800; font-variant-numeric: tabular-nums; }
+    .timer-label.is-low { color: #a33d35; }
     .focus-button, .secondary-button {
       padding: 10px 15px;
       border: 1px solid var(--line);
@@ -223,6 +225,11 @@
     .feedback { min-height: 1.5em; margin: 7px 0 0; color: var(--muted); font-size: .92rem; font-weight: 700; }
     .feedback.correct { color: var(--good); }
     .feedback.incorrect { color: var(--try); }
+    .feedback.correct, .feedback.incorrect { animation: answer-feedback 280ms ease-out; }
+    @keyframes answer-feedback {
+      0% { transform: translateY(3px); opacity: .55; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
     .action-row {
       display: flex;
       flex-wrap: wrap;
@@ -246,6 +253,9 @@
     .focus-mode .question-card:not(.is-current) { display: none; }
     .focus-mode .action-row { gap: 8px; }
     .focus-mode .result { margin-left: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      .feedback.correct, .feedback.incorrect { animation: none; }
+    }
     .nav-button { min-width: 45px; padding: 8px 12px; border: 1px solid var(--line); background: white; }
     .nav-button:disabled { cursor: not-allowed; opacity: .45; }
     .sr-only {
@@ -311,8 +321,9 @@
 
     <section class="toolbar" aria-label="Worksheet options">
       <div class="level-picker" role="group" aria-label="Choose a difficulty level">
-        <button class="level-button" type="button" data-level="starter" aria-pressed="true">🌱 Starter</button>
-        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">🚀 Challenge</button>
+        <button class="level-button" type="button" data-level="easy" aria-pressed="true">Easy: The Curious Researcher</button>
+        <button class="level-button" type="button" data-level="medium" aria-pressed="false">Medium: The Keen Observer</button>
+        <button class="level-button" type="button" data-level="hard" aria-pressed="false">Hard: The language guru</button>
       </div>
       <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
     </section>
@@ -336,9 +347,12 @@
         <div class="activity-title-row">
           <div>
             <h2 id="activity-title">Warm-up: choose or complete</h2>
-            <p id="level-description">Start with one small set of five questions.</p>
+            <p id="level-description">Start with a small set. You have 60 seconds.</p>
           </div>
-          <span class="eyebrow" id="level-label">🌱 Starter</span>
+          <div>
+            <span class="eyebrow" id="level-label">Easy</span>
+            <span class="timer-label" id="activity-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
+          </div>
         </div>
         <div class="progress-wrap">
           <div class="progress-meta">
@@ -365,18 +379,26 @@
     </section>
   </main>
 
-  <footer class="shell">Short steps, kind feedback, and no timer. You can try again any time.</footer>
+  <footer class="shell">Short steps, kind feedback, and a fresh try whenever you need one.</footer>
 
+  <script src="../assets/activity-timer.js"></script>
   <script>
     const activities = {
-      starter: [
+      easy: [
         { prompt: "I ___ a red kite.", type: "select", options: ["have", "has"], answer: "have" },
         { prompt: "Zara ___ two cats.", type: "select", options: ["have", "has"], answer: "has" },
         { prompt: "My friends ___ a new teacher.", type: "text", answer: ["have"] },
         { prompt: "He ___ (not / have) a lunch box.", type: "text", answer: ["doesn't have", "does not have"] },
         { prompt: "___ you have a pet?", type: "select", options: ["Do", "Does"], answer: "Do" }
       ],
-      challenge: [
+      medium: [
+        { prompt: "My sister ___ a purple backpack.", type: "select", options: ["have", "has"], answer: "has" },
+        { prompt: "They ___ (not / have) a music lesson today.", type: "text", answer: ["don't have", "do not have"] },
+        { prompt: "___ your friends have a new teacher?", type: "select", options: ["Do", "Does"], answer: "Do" },
+        { prompt: "Complete: Sam ___ a blue lunch box.", type: "text", answer: ["has"] },
+        { prompt: "Does your brother have a bike? No, he ___.", type: "select", options: ["don't", "doesn't"], answer: "doesn't" }
+      ],
+      hard: [
         { prompt: "My cousin ___ a skateboard.", type: "select", options: ["have", "has"], answer: "has" },
         { prompt: "We ___ (not / have) much time.", type: "text", answer: ["don't have", "do not have"] },
         { prompt: "___ your teacher have a pet?", type: "select", options: ["Do", "Does"], answer: "Does" },
@@ -391,9 +413,19 @@
     const activityCard = document.querySelector(".activity");
     const result = document.querySelector("#result");
     const progressTrack = document.querySelector("#progress-track");
-    let currentLevel = "starter";
+    let currentLevel = "easy";
     let currentQuestion = 0;
     let checked = false;
+    const levelSeconds = { easy: 60, medium: 45, hard: 30 };
+    const submitButton = form.querySelector('[type="submit"]');
+    const activityTimer = window.createActivityTimer(
+      document.querySelector("#activity-timer"),
+      () => {
+        questionsElement.querySelectorAll(".answer-control").forEach(control => { control.disabled = true; });
+        submitButton.disabled = true;
+        result.textContent = "Time is up! Start again to try this level once more.";
+      }
+    );
 
     function renderQuestions() {
       const questions = activities[currentLevel];
@@ -455,13 +487,19 @@
       });
 
       document.querySelector("#activity-title").textContent =
-        currentLevel === "starter" ? "Warm-up: choose or complete" : "Level up: try the challenge";
+        `Questions · ${currentLevel === "easy" ? "Easy: The Curious Researcher"
+          : currentLevel === "medium" ? "Medium: The Keen Observer"
+          : "Hard: The language guru"}`;
       document.querySelector("#level-label").textContent =
-        currentLevel === "starter" ? "🌱 Starter" : "🚀 Challenge";
+        currentLevel === "easy" ? "Easy: The Curious Researcher"
+          : currentLevel === "medium" ? "Medium: The Keen Observer"
+          : "Hard: The language guru";
       document.querySelector("#level-description").textContent =
-        currentLevel === "starter"
-          ? "Start with one small set of five questions."
-          : "Ready for negatives, questions, and a sentence of your own?";
+        currentLevel === "easy" ? "Try a small set of have and has questions. You have 60 seconds."
+          : currentLevel === "medium" ? "Practise negatives and questions. You have 45 seconds."
+          : "Test your grammar with harder sentences. You have 30 seconds.";
+      activityTimer.reset(levelSeconds[currentLevel]);
+      submitButton.disabled = false;
       progressTrack.setAttribute("aria-valuemax", String(questions.length));
       document.querySelectorAll(".level-button").forEach(button => {
         button.setAttribute("aria-pressed", String(button.dataset.level === currentLevel));
@@ -492,6 +530,8 @@
 
     function checkAnswers(event) {
       event.preventDefault();
+      if (activityTimer.expired) return;
+      activityTimer.stop();
       const questions = activities[currentLevel];
       const controls = [...questionsElement.querySelectorAll(".answer-control")];
       let score = 0;
@@ -579,6 +619,8 @@
 
     form.addEventListener("submit", checkAnswers);
     document.querySelector("#reset-button").addEventListener("click", resetActivity);
+    form.addEventListener("input", () => activityTimer.start());
+    form.addEventListener("change", () => activityTimer.start());
     form.addEventListener("input", () => {
       if (checked) {
         checked = false;

@@ -264,9 +264,9 @@
 
     <section class="toolbar" aria-label="Worksheet options">
       <div class="level-picker" role="group" aria-label="Choose a difficulty level">
-        <button class="level-button" type="button" data-level="starter" aria-pressed="true">🌱 Starter</button>
-        <button class="level-button" type="button" data-level="builder" aria-pressed="false">🌿 Builder</button>
-        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">🚀 Challenge</button>
+        <button class="level-button" type="button" data-level="starter" aria-pressed="true">Easy: The Curious Researcher</button>
+        <button class="level-button" type="button" data-level="builder" aria-pressed="false">Medium: The Keen Observer</button>
+        <button class="level-button" type="button" data-level="challenge" aria-pressed="false">Hard: The language guru</button>
       </div>
       <button id="focus-toggle" class="focus-button" type="button" aria-pressed="false">One question at a time: Off</button>
     </section>
@@ -279,6 +279,7 @@
 
     <section class="matching-activity" id="matching-zone" aria-labelledby="matching-title">
       <h2 id="matching-title">Letter match: drag, drop, or tap</h2>
+      <p class="matching-level" id="matching-level">Easy: The Curious Researcher</p>
       <p class="matching-intro">Drag a lowercase letter to its capital, or select a letter and then tap a clue.</p>
       <p class="matching-label" id="word-bank-label">Lowercase letters</p>
       <div class="matching-words" id="matching-words" aria-labelledby="word-bank-label"></div>
@@ -286,6 +287,7 @@
       <div class="matching-targets" id="matching-targets" aria-labelledby="matching-clue-label"></div>
       <p class="matching-status" id="matching-status" aria-live="polite"></p>
       <div class="matching-footer">
+        <span class="matching-timer" id="matching-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
         <p class="matching-score" id="matching-score" aria-live="polite"></p>
         <button class="matching-reset" id="reset-matching" type="button">Reset matches</button>
       </div>
@@ -298,7 +300,10 @@
             <h2 id="activity-title">Warm-up: letter spotting</h2>
             <p id="level-description">A small set of five questions to get started.</p>
           </div>
-          <span class="eyebrow" id="level-label">🌱 Starter</span>
+          <div>
+            <span class="eyebrow" id="level-label">Easy</span>
+            <span class="timer-label" id="activity-timer" role="timer" aria-label="Time remaining" aria-live="off"></span>
+          </div>
         </div>
         <div class="progress-wrap">
           <div class="progress-meta">
@@ -325,8 +330,8 @@
     </section>
   </main>
 
-  <footer class="shell">Short steps, kind feedback, and no timer. You can try again any time.</footer>
-
+  <footer class="shell">Short steps, kind feedback, and a fresh try whenever you need one.</footer>
+  <script src="assets/activity-timer.js"></script>
   <script src="assets/matching.js"></script>
   <script>
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -363,6 +368,21 @@
     let currentLevel = "starter";
     let currentQuestion = 0;
     let checked = false;
+    const levelSeconds = { starter: 60, builder: 45, challenge: 30 };
+    const levelNames = {
+      starter: "Easy: The Curious Researcher",
+      builder: "Medium: The Keen Observer",
+      challenge: "Hard: The language guru"
+    };
+    const submitButton = form.querySelector('[type="submit"]');
+    const activityTimer = window.createActivityTimer(
+      document.querySelector("#activity-timer"),
+      () => {
+        questionsElement.querySelectorAll(".answer-control").forEach(control => { control.disabled = true; });
+        submitButton.disabled = true;
+        result.textContent = "Time is up! Start again to try this level once more.";
+      }
+    );
 
     function renderAlphabet() {
       const strip = document.querySelector("#alphabet-strip");
@@ -438,19 +458,16 @@
       });
 
       document.querySelector("#activity-title").textContent =
-        currentLevel === "starter" ? "Warm-up: letter spotting"
-          : currentLevel === "builder" ? "Practice: build your skills"
-          : "Level up: letters in order";
-      document.querySelector("#level-label").textContent =
-        currentLevel === "starter" ? "🌱 Starter"
-          : currentLevel === "builder" ? "🌿 Builder"
-          : "🚀 Challenge";
+        `Questions · ${levelNames[currentLevel]}`;
+      document.querySelector("#level-label").textContent = levelNames[currentLevel];
       document.querySelector("#level-description").textContent =
         currentLevel === "starter"
-          ? "A small set of five questions to get started."
+          ? "A small set of five questions. You have 60 seconds."
           : currentLevel === "builder"
-            ? "A little more practice with letter names and sequences."
-            : "Ready to complete sequences and put letters in order?";
+            ? "Practise letter names and sequences. You have 45 seconds."
+            : "Complete sequences and put letters in order. You have 30 seconds.";
+      activityTimer.reset(levelSeconds[currentLevel]);
+      submitButton.disabled = false;
       progressTrack.setAttribute("aria-valuemax", String(questions.length));
       document.querySelectorAll(".level-button").forEach(button => {
         button.setAttribute("aria-pressed", String(button.dataset.level === currentLevel));
@@ -481,6 +498,8 @@
 
     function checkAnswers(event) {
       event.preventDefault();
+      if (activityTimer.expired) return;
+      activityTimer.stop();
       const questions = activities[currentLevel];
       const controls = [...questionsElement.querySelectorAll(".answer-control")];
       let score = 0;
@@ -567,6 +586,8 @@
 
     form.addEventListener("submit", checkAnswers);
     document.querySelector("#reset-button").addEventListener("click", resetActivity);
+    form.addEventListener("input", () => activityTimer.start());
+    form.addEventListener("change", () => activityTimer.start());
     form.addEventListener("input", () => {
       if (checked) {
         checked = false;

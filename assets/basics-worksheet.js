@@ -192,6 +192,21 @@ const progressTrack = document.querySelector("#progress-track");
 let currentLevel = "starter";
 let currentQuestion = 0;
 let checked = false;
+const levelSeconds = { starter: 60, builder: 45, challenge: 30 };
+const levelNames = {
+  starter: "Easy: The Curious Researcher",
+  builder: "Medium: The Keen Observer",
+  challenge: "Hard: The language guru"
+};
+const submitButton = form.querySelector('[type="submit"]');
+const activityTimer = window.createActivityTimer(
+  document.querySelector("#activity-timer"),
+  () => {
+    questionsElement.querySelectorAll(".answer-control").forEach(control => { control.disabled = true; });
+    submitButton.disabled = true;
+    result.textContent = "Time is up! Start again to try this level once more.";
+  }
+);
 
 function renderReference() {
   document.querySelector("#reference-title").textContent = worksheet.referenceTitle;
@@ -229,6 +244,7 @@ function renderReference() {
 
 function renderQuestions() {
   const questions = worksheet.activities[currentLevel];
+  const levelName = levelNames[currentLevel];
   questionsElement.replaceChildren();
 
   questions.forEach((question, index) => {
@@ -288,19 +304,16 @@ function renderQuestions() {
   });
 
   document.querySelector("#activity-title").textContent =
-    currentLevel === "starter" ? "Warm-up: try the basics"
-      : currentLevel === "builder" ? "Practice: build your skills"
-      : "Level up: try the challenge";
-  document.querySelector("#level-label").textContent =
-    currentLevel === "starter" ? "🌱 Starter"
-      : currentLevel === "builder" ? "🌿 Builder"
-      : "🚀 Challenge";
+    `Questions · ${levelName}`;
+  document.querySelector("#level-label").textContent = levelName;
   document.querySelector("#level-description").textContent =
     currentLevel === "starter"
-      ? "A small set of five questions to get started."
+      ? "A small set of questions to get started. You have 60 seconds."
       : currentLevel === "builder"
-        ? "A little more practice, one question at a time."
-        : "Ready for a little more practice? You can use the guide above.";
+        ? "A little more practice. You have 45 seconds."
+        : "Ready for a challenge? You have 30 seconds. You can use the guide above.";
+  activityTimer.reset(levelSeconds[currentLevel]);
+  submitButton.disabled = false;
   progressTrack.setAttribute("aria-valuemax", String(questions.length));
   document.querySelectorAll(".level-button").forEach(button => {
     button.setAttribute("aria-pressed", String(button.dataset.level === currentLevel));
@@ -330,6 +343,8 @@ function normalized(value) {
 
 function checkAnswers(event) {
   event.preventDefault();
+  if (activityTimer.expired) return;
+  activityTimer.stop();
   const questions = worksheet.activities[currentLevel];
   const controls = [...questionsElement.querySelectorAll(".answer-control")];
   let score = 0;
@@ -422,6 +437,8 @@ function renderFocusCard() {
 
 form.addEventListener("submit", checkAnswers);
 document.querySelector("#reset-button").addEventListener("click", resetActivity);
+form.addEventListener("input", () => activityTimer.start());
+form.addEventListener("change", () => activityTimer.start());
 form.addEventListener("input", clearFeedbackAfterEdit);
 form.addEventListener("change", clearFeedbackAfterEdit);
 
