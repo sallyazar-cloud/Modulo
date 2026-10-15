@@ -6,8 +6,9 @@
 .learning-menu {
   position: relative;
   z-index: 20;
-  order: -1;
-  margin-right: auto;
+  order: 1;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .learning-menu summary {
@@ -35,8 +36,9 @@
   border-bottom: 2px solid #a94716;
   content: "";
   transform: rotate(45deg);
+  transition: transform 160ms ease;
 }
-.learning-menu[open] summary::after { margin-top: .2rem; transform: rotate(225deg); }
+.learning-menu[open] > summary::after { margin-top: .2rem; transform: rotate(225deg); }
 .learning-menu summary:hover,
 .learning-menu[open] summary { background: #f5e8fa; }
 
@@ -94,6 +96,7 @@
   border-bottom: 2px solid #a94716;
   content: "";
   transform: rotate(45deg);
+  transition: transform 160ms ease;
 }
 .learning-menu-grade[open] > summary::after { transform: rotate(225deg); }
 .learning-menu-grade > summary:hover,

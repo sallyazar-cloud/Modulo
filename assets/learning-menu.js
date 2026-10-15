@@ -58,7 +58,8 @@
   }
 
   const summary = document.createElement("summary");
-  summary.textContent = "Classes & subjects";
+  summary.textContent = "Resources";
+  menu.setAttribute("aria-label", "Resources");
   menu.append(summary);
   addGroup("Choose a class");
   menu.append(panel);

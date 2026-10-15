@@ -60,13 +60,16 @@ body {
 }
 
 .brand {
+  order: -1;
+  gap: 14px;
   color: var(--purple-dark) !important;
+  font-size: 1.5rem !important;
 }
 
 .brand-photo {
-  width: 88px !important;
-  height: 88px !important;
-  flex-basis: 88px !important;
+  width: 112px !important;
+  height: 112px !important;
+  flex-basis: 112px !important;
   border: 3px solid #f2a34f !important;
   box-shadow: 0 0 0 3px #f8e5cb, 0 5px 16px rgb(58 31 66 / 22%) !important;
 }
@@ -289,10 +292,12 @@ footer {
 
 @media (max-width: 620px) {
   .brand-photo {
-    width: 72px !important;
-    height: 72px !important;
-    flex-basis: 72px !important;
+    width: 88px !important;
+    height: 88px !important;
+    flex-basis: 88px !important;
   }
+
+  .brand { font-size: 1.3rem !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

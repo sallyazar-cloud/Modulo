@@ -19,6 +19,8 @@
       sourceClass: "Sixième",
       levelDescription: "CEFR targets: LVB A1; LVA A1+. The five programme culture axes are covered.",
       detailTarget: "two",
+      vocabularyTarget: "a small, familiar set of words and short phrases with picture or context support",
+      grammarTarget: "simple modelled sentence patterns, familiar verb forms, and basic word order",
       speakingTarget: "a short prepared presentation using familiar phrases and a few linked details",
       interactionTarget: "a simple, familiar exchange with support, repetition, and a clear model",
       readingTarget: "short, concrete texts with familiar words, pictures, and explicit information",
@@ -29,6 +31,8 @@
       sourceClass: "Cinquième",
       levelDescription: "CEFR targets: LVB A1+; LVA A2. The plan includes all six culture axes; the programme requires five, including the United Kingdom axis.",
       detailTarget: "three",
+      vocabularyTarget: "a growing bank of topic words, common expressions, and simple collocations",
+      grammarTarget: "familiar present and past forms, basic questions, and simple connectors",
       speakingTarget: "a short organized presentation, description, or retelling with simple connectors",
       interactionTarget: "a familiar exchange that includes follow-up questions, clarification, and simple mediation",
       readingTarget: "short familiar texts, identifying their main information, sequence, and purpose",
@@ -39,6 +43,8 @@
       sourceClass: "Quatrième",
       levelDescription: "CEFR targets: LVB A1+; LVA A2+. The plan includes all six culture axes; the programme requires five, including the Ireland axis.",
       detailTarget: "four",
+      vocabularyTarget: "a broader range of topic vocabulary, useful expressions, and familiar collocations",
+      grammarTarget: "a range of familiar tenses, clauses, and connectors used to link ideas",
       speakingTarget: "a clear, organized presentation that explains details and expresses a preference or viewpoint",
       interactionTarget: "a short, purposeful discussion with follow-up, clarification, and supported comparison of viewpoints",
       readingTarget: "familiar and informational texts, identifying main ideas, supporting details, and viewpoint clues",
@@ -49,6 +55,8 @@
       sourceClass: "Troisième",
       levelDescription: "CEFR targets: LVB A2; LVA B1. The plan includes all six culture axes; the programme requires five, including the United States axis.",
       detailTarget: "five",
+      vocabularyTarget: "a varied range of topic vocabulary, precise expressions, and collocations",
+      grammarTarget: "an appropriate range of tenses, clauses, connectors, and modality to develop ideas",
       speakingTarget: "a coherent presentation that develops an idea, supports an opinion, and responds to a question",
       interactionTarget: "an increasingly independent exchange that compares ideas, clarifies meaning, and relays relevant information",
       readingTarget: "connected texts and media, distinguishing main points, supporting details, and differing perspectives",
@@ -86,10 +94,11 @@
     const competencies = themes.flatMap(([, focus], index) => {
       const period = index + 1;
       return [
+        [period, "Vocabulary", "Understand and use topic vocabulary", `Understands and selects ${profile.vocabularyTarget} to communicate about ${focus.toLowerCase()}.`],
+        [period, "Grammar", "Use grammar in context", `Uses ${profile.grammarTarget} accurately enough to describe, explain, and exchange information about ${focus.toLowerCase()}.`],
         [period, "Listening", "Listen and interpret", `Understands level-appropriate spoken English about ${focus.toLowerCase()}, identifies its main idea and relevant details, and uses context clues.`],
         [period, "Reading", "Read and interpret", `Understands a level-appropriate written text about ${focus.toLowerCase()}, locates supporting information, and uses text or visual clues to interpret meaning.`],
-        [period, "Speaking", "Present and express", `Communicates about ${focus.toLowerCase()} through ${profile.speakingTarget}.`],
-        [period, "Interaction and mediation", "React, exchange, and relay information", `Takes part in ${profile.interactionTarget}; checks understanding and relays relevant information about ${focus.toLowerCase()}.`],
+        [period, "Speaking", "Present, interact, and mediate", `Communicates about ${focus.toLowerCase()} through ${profile.speakingTarget}; takes part in ${profile.interactionTarget}, checks understanding, and relays relevant information.`],
         [period, "Writing", "Write for a purpose", `Creates a level-appropriate written response about ${focus.toLowerCase()}: ${profile.writingTarget}.`]
       ];
     });
