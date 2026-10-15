@@ -1,10 +1,10 @@
 # Modulo
 
-Colorful, browser-based English teacher's organizer. organized into six subject areas for Grades 1–5 and four for the other grade levels.
+Modulo is a colorful English-learning site that can also be packaged as an offline Android and iOS app with Capacitor.
 
 ## Use it
 
-Open `index.html` in a modern web browser to visit the hub. No installation, account, or internet connection is needed.
+Open `index.html` in a modern web browser to visit the hub. No account or internet connection is needed. To run Modulo as a mobile app, see [Mobile app](#mobile-app).
 
 The top-right **Resources** menu is the main navigation: expand KG 1–KG 3 or Grades 1–9 to find that class's activities. Grades 1–9 include Vocabulary, Grammar, Listening, Speaking, Reading, and Writing; KG levels retain Vocabulary, Grammar, Reading, and Writing.
 
@@ -13,6 +13,18 @@ Grade 1 lessons follow the workbook's CP plan, Grade 2 follows CE1, and Grade 3 
 The home page introduces Modulo and points to the Grade 6 resource library, where the alphabet, colors, school supplies, and classroom commands are grouped under Vocabulary, and the basket-of-fruits story is under Reading. These featured standalone worksheets are linked from Grade 6 only; the grade-specific activity menus remain available for every class. Grade 6 Grammar teaches have/has in Period 1 (people and characters), with a link to the full timed grammar practice.
 
 The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/halloween-season.jfif`, so the theme can be updated or removed later without changing worksheet content.
+
+## Mobile app
+
+Modulo uses Capacitor to package the existing website as a native Android and iOS app. Lessons, styles, images, and fonts are bundled with the app, so the learning activities work offline. The app identifier is `com.modulo.learning`.
+
+Requirements:
+
+- Node.js 22 or newer and npm.
+- Android Studio and the Android SDK to build and run Android.
+- macOS with Xcode to build and run iOS.
+
+Install the JavaScript dependencies with `npm install`. To add and open the Android project, run `npm run cap:add:android` once, then `npm run android`. On a Mac, use `npm run cap:add:ios` once, then `npm run ios`. The build scripts copy the site pages and assets into `www/` before Capacitor syncs them to the native projects. Keep the generated Android and iOS project folders under version control after adding them.
 
 ## Worksheets
 
