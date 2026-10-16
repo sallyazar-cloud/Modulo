@@ -145,7 +145,7 @@ function renderMatches(level = "starter") {
     prompt.textContent = clue;
     const dropLabel = document.createElement("span");
     dropLabel.className = "match-drop-label";
-    dropLabel.textContent = "Drop or select a word here";
+    dropLabel.textContent = "Drop or tap here";
     target.append(prompt, dropLabel);
     target.addEventListener("click", () => {
       if (selectedWordChip) matchWordToTarget(selectedWordChip.dataset.word, target);
@@ -222,6 +222,7 @@ function updateMatchScore(total) {
   matchScore.textContent = completedMatches === total
     ? `All ${total} matches complete!`
     : `${completedMatches} of ${total} matched`;
+  if (total > 0 && completedMatches === total) window.celebrate?.();
 }
 
 matchLevelButtons.forEach(button => {

@@ -695,6 +695,7 @@
       feedback.textContent = currentSubject === "listening"
         ? "Listening practice complete. Great work!"
         : "Speaking practice complete. Great work!";
+      window.celebrate?.();
       disableInputs(true);
       return;
     }
@@ -714,6 +715,7 @@
       timer.stop();
       feedback.className = "feedback correct";
       feedback.textContent = "That's right! Great work.";
+      window.celebrate?.();
       disableInputs(true);
     } else {
       feedback.className = "feedback incorrect";

@@ -375,6 +375,7 @@ function checkAnswers(event) {
   result.textContent = score === questions.length
     ? `Amazing — ${score} out of ${questions.length}!`
     : `You got ${score} out of ${questions.length}. Try any tricky ones again!`;
+  if (score === questions.length) window.celebrate?.();
 }
 
 function resetActivity() {

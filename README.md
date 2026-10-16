@@ -12,7 +12,7 @@ Grade 1 lessons follow the workbook's CP plan, Grade 2 follows CE1, and Grade 3 
 
 The home page introduces Modulo and points to the Grade 6 resource library, where the alphabet, colors, school supplies, and classroom commands are grouped under Vocabulary, and the basket-of-fruits story is under Reading. These featured standalone worksheets are linked from Grade 6 only; the grade-specific activity menus remain available for every class. Grade 6 Grammar teaches have/has in Period 1 (people and characters), with a link to the full timed grammar practice.
 
-The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/halloween-season.jfif`, so the theme can be updated or removed later without changing worksheet content.
+The seasonal Halloween look is isolated in `assets/halloween-theme.css`, with its artwork in `assets/brand/` (the pumpkin logo, tagline, night-sky and hills images), so the theme can be updated or removed later without changing worksheet content. The year-round kid-friendly styling (larger text and buttons, level stars, playful cards) lives in `assets/kids.css`, and `assets/celebrate.js` shows a short confetti burst when a learner gets every answer right (skipped when the device asks for reduced motion).
 
 ## Mobile app
 

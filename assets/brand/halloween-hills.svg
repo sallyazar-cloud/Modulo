@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 80" width="1600" height="80" preserveAspectRatio="none">
+<path fill="#2c1640" d="M0 44C140 22 260 18 400 34S640 58 800 40 1080 14 1240 30 1480 52 1600 44V80H0Z"/>
+<path fill="#1b0d26" d="M0 60C160 46 300 44 460 54S760 70 940 56 1260 40 1420 52 1560 62 1600 60V80H0Z"/>
+<g fill="#1b0d26"><path d="M210 48l4-12 3 10 4-8 2 10Z"/><path d="M690 56l3-10 3 9 4-7 2 9Z"/><path d="M1180 46l4-11 3 10 4-8 2 10Z"/><path d="M1480 54l3-10 3 9 4-7 2 8Z"/></g>
+</svg>

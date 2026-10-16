@@ -1,0 +1,291 @@
+/* Kid-friendly layer shared by every page: bigger text and tap targets,
+   playful shapes and gentle motion. Seasonal colours stay in the theme file,
+   which loads after this one. */
+
+html {
+  background: #fffaf4;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.0625rem;
+}
+
+/* ---------- banner motion ---------- */
+
+.seasonal-logo-mark {
+  animation: logo-bob 4.5s ease-in-out infinite;
+  transform-origin: 50% 80%;
+}
+
+.seasonal-banner:hover .seasonal-logo-mark {
+  animation: logo-wiggle 600ms ease-in-out;
+}
+
+.seasonal-logo::before {
+  animation: moon-glow 5s ease-in-out infinite;
+}
+
+@keyframes logo-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes logo-wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-3deg) scale(1.03); }
+  75% { transform: rotate(3deg) scale(1.03); }
+}
+
+@keyframes moon-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+/* ---------- header ---------- */
+
+.brand-photo {
+  transition: transform 200ms ease;
+}
+
+.brand:hover .brand-photo {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+/* ---------- text ---------- */
+
+.hero p,
+.activity-title-row p,
+.reference-card > p {
+  font-size: 1.1rem;
+}
+
+/* ---------- buttons: chunky, bouncy, easy to tap ---------- */
+
+.level-button,
+.quiz-level-button,
+.difficulty-button,
+.focus-button,
+.secondary-button,
+.primary-button,
+.nav-button,
+.game-reset,
+.story-button,
+.quiz-button,
+.hero-action {
+  min-height: 52px;
+  border-width: 2px;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+.level-button,
+.quiz-level-button,
+.difficulty-button {
+  font-size: 1.05rem;
+  box-shadow: 0 4px 0 #eadbcf;
+}
+
+.level-button:hover,
+.quiz-level-button:hover,
+.difficulty-button:hover,
+.secondary-button:hover,
+.focus-button:hover,
+.game-reset:hover {
+  transform: translateY(-2px);
+}
+
+.level-button:active,
+.quiz-level-button:active,
+.difficulty-button:active,
+.primary-button:active,
+.story-button:active,
+.quiz-button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* stars show how hard each level is */
+[data-level="easy"]::before,
+[data-level="starter"]::before,
+[data-difficulty="easy"]::before { content: "⭐ "; content: "⭐ " / ""; }
+[data-level="medium"]::before,
+[data-level="builder"]::before,
+[data-difficulty="medium"]::before { content: "⭐⭐ "; content: "⭐⭐ " / ""; }
+[data-level="hard"]::before,
+[data-level="challenge"]::before,
+[data-difficulty="hard"]::before { content: "⭐⭐⭐ "; content: "⭐⭐⭐ " / ""; }
+
+.primary-button,
+.story-button,
+.quiz-button {
+  padding-inline: 22px;
+  font-size: 1.08rem;
+}
+
+/* ---------- questions ---------- */
+
+.question-card {
+  border-width: 2px;
+  border-radius: 22px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.question-card:hover {
+  box-shadow: 0 8px 20px rgb(58 31 66 / 8%);
+}
+
+.question-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.question-card:nth-child(5n + 1) .question-number { background: #ffd36a; }
+.question-card:nth-child(5n + 2) .question-number { background: #ffc1a8; }
+.question-card:nth-child(5n + 3) .question-number { background: #c9ecd7; }
+.question-card:nth-child(5n + 4) .question-number { background: #cfe3ff; }
+.question-card:nth-child(5n + 5) .question-number { background: #ead2f7; }
+
+.question-prompt {
+  font-size: 1.2rem;
+}
+
+.answer-control,
+select,
+input[type="text"] {
+  min-height: 54px;
+  border-width: 2px;
+  border-radius: 14px;
+  font-size: 1.08rem;
+}
+
+.feedback {
+  font-size: 1rem;
+}
+
+.feedback.correct::before { content: "🎉 "; content: "🎉 " / ""; }
+.feedback.incorrect::before { content: "💡 "; content: "💡 " / ""; }
+
+.progress-track {
+  height: 14px;
+}
+
+/* ---------- matching games ---------- */
+
+.match-word {
+  padding: 10px 18px;
+  font-size: 1.15rem;
+}
+
+.match-word,
+.fruit-card {
+  min-height: 52px;
+  border-width: 2px;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: grab;
+  transition: transform 140ms ease;
+}
+
+.match-word:hover,
+.fruit-card:hover:not(:disabled) {
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.match-target {
+  border-width: 2px;
+  border-radius: 16px;
+}
+
+.match-target.is-matched {
+  animation: pop 320ms ease-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- cards ---------- */
+
+.activity,
+.matching-activity,
+.reference-card,
+.storybook,
+.fruit-game,
+.quiz,
+.rule-card,
+.about-section {
+  border-width: 2px;
+  border-radius: 26px;
+}
+
+.reference-item {
+  border-radius: 16px;
+  transition: transform 140ms ease;
+}
+
+.color-swatch {
+  width: 44px;
+  height: 44px;
+}
+
+.reference-item:hover {
+  transform: translateY(-3px) rotate(-1deg);
+}
+
+/* ---------- keyboard focus ---------- */
+
+:focus-visible {
+  outline: 4px solid #e87525;
+  outline-offset: 3px;
+}
+
+/* ---------- celebration confetti (assets/celebrate.js) ---------- */
+
+.confetti {
+  position: fixed;
+  z-index: 1000;
+  top: -40px;
+  pointer-events: none;
+  font-size: 1.8rem;
+  animation: confetti-fall var(--fall, 2.6s) cubic-bezier(.25, .6, .4, 1) forwards;
+}
+
+@keyframes confetti-fall {
+  to { transform: translate(var(--drift, 0), 110vh) rotate(var(--spin, 360deg)); }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 1rem; }
+  .question-prompt { font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonal-logo-mark,
+  .seasonal-logo::before,
+  .match-target.is-matched {
+    animation: none !important;
+  }
+
+  .confetti { display: none; }
+
+  .level-button:hover,
+  .quiz-level-button:hover,
+  .difficulty-button:hover,
+  .secondary-button:hover,
+  .focus-button:hover,
+  .game-reset:hover,
+  .match-word:hover,
+  .fruit-card:hover,
+  .reference-item:hover,
+  .brand:hover .brand-photo {
+    transform: none;
+  }
+}
